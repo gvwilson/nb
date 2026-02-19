@@ -1,0 +1,38 @@
+Jason Moore
+
+- Uses it in his master's-level course (200-250 students/year) on bicycle engineering
+  - Used to teach the same material to 15 students at a time
+  - Shortage of teaching support resources
+- Went Python -> IPython -> Notebook
+  - Realized it would be a good way to combine symbolic algebra (for describing dynamics)
+  - E.g., free-body diagrams -> vectors -> Newton-Euler equations
+  - Teach students computer algebra instead of pencil on paper
+- Students download chapters of his book as notebooks and execute themselves
+  - Doesn't use "advanced" online stuff
+- Gives them homework at notebooks
+- Use Vocareum (online service built on JupyterLab) at TUDelft
+- Use nbgrader for grading notebooks
+  - 230 notebooks/week is infeasible by hand, so automate w/ nbgrader
+- It's a challenge
+  - Hand-grading engineering assignments allows flexibility (give students partial credit)
+  - Applying nbgrader is restrictive
+  - Has to think hard about how to grade intermediate portions
+  - Not the fault of nbgrader per se, but of autograding in general
+  - Doesn't have time to make grading algorithm more flexible
+- Also uses nbgrader for exams
+  - It becomes more all-or-nothing
+  - Again, have to design exercises as layered
+- How do students feel about autograding?
+  - Like it for homework: re-submit until they get it right
+    - Or they give up :-)
+  - Don't like it in exams because higher stakes (higher stress)
+- GVW explains reproducibility and "plays nicely with Git", asks if either are important
+  - JM never had a problem with out-of-order execution
+  - Doesn't understand how it's any different from just using an interpreter
+  - Can see how tracking dependency graph would be a benefit
+  - Tells students "just re-run notebook top to bottom"
+  - His students don't use Git, so that's not a problem
+  - JM is an experienced Git user, so it's not a problem for him
+  - Doesn't use diff with notebooks: just treat as a linear update
+  - Just open the two notebooks and inspect
+- [discussion then turned to use of AI in teaching in general]
