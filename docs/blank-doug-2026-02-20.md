@@ -1,0 +1,49 @@
+Doug Blank
+2026-02-20
+
+- used to teach at Bryn Mawr, first installation of JupyterHub (2014-17)
+- transitioned all his classes to Jupyter notebooks
+  - wanted a data-oriented writing approach
+  - Markdown + Google charting in a custom kernel
+- left BM to join a company that built AI tools in 2017
+  - Head of Research at Comet (comet.com)
+- does not like Colab (first point he made)
+  - they have a lot of cool stuff, but Google has diverged from standards and didn't give it back to Jupyter
+  - Jupyter has tried to be polite about this, but it's been hard
+- but finds himself having to use Colab
+  - Comet uses Colab mostly for sending demo code with very little text
+  - "here's a runnable example" - enter your API key and you're done
+  - slideshow tool in Colab is painful, seems to have ignored what Jupyter did
+  - DB struggled to figure out how to use it (despite years of experience)
+- DB's rule was "every cell had to have explanatory text"
+- if you give students a well-written notebook with blocks of code, students will just shift-enter through it
+  - no interaction with their brain
+  - so always make places where they can't continue (e.g. assert False) to force them to engage
+  - want it to be hard enough that they can't zoom through on autopilot
+- DB always told them "I want you to add cells", but failed: students mostly didn't
+  - DB wanted them to explore, they just wanted to finish the assignment
+- likes that Colab has their own language for creating widgets
+  - create widgets inside comments
+  - was terribly implemented
+  - DB only used things that were Jupyter-compliant
+- doesn't ever use the AI integrated into Colab
+  - will it make student engagement even worse?
+- Comet is transitioning to AI-only coding internally
+  - human presence in pipeline is limited to just a few a spots
+- how would he use AI with notebooks?
+- DB's reply is "how do you teach with AI in general?"
+  - need lessons that require incremental change (to prevent cheating)
+  - e.g., bullet points and no upper case as first hand-in
+  - can lessons be broken up that way?
+  - don't bother trying to ask questions that AI can't answer, because moving goalposts
+- AI often fails when a solution needs an abstraction layer
+  - DB goes back and breaks the prompt into steps
+  - teaching students what abstractions exist and are useful is important
+- Catch-22: if students don't know the patterns they can't ask for them, but how do they learn those patterns?
+- DB: class that taught him how to think about this was programming languages
+- out-of-order execution was a minor problem for him when teaching (hidden state)
+- mentioned Jupytext as a way to support diffs
+- DB's colleagues did not like any pull request w/ .ipynb files
+- Jeremy Howard / FastAI / Jupyter tools
+- lots of praise for Allen Downey's notebooks
+  - good stories
