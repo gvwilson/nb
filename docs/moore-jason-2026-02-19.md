@@ -1,4 +1,5 @@
 Jason Moore
+2026-02-19
 
 - Uses it in his master's-level course (200-250 students/year) on bicycle engineering
   - Used to teach the same material to 15 students at a time

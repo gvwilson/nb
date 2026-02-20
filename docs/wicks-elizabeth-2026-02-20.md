@@ -1,0 +1,48 @@
+Elizabeth Wickes
+2026-02-20
+
+- not a traditional data science teacher
+- developed CS-1/CS-2 for new program in information science
+  - data science + information science as dual degree
+- been teaching those since Fall 2020 (COVID)
+- surveyed what other classes are doing
+  - most of her students are going to see Jupyter notebooks everywhere
+  - so EW wanted to focus on core Python and scripting
+- likes Jupyter but doesn't like it as a first programming environment
+  - "don't want it to be their first conversation"
+  - "because it's a hybrid"
+  - non-linear "eating your own tail" aspect
+- e.g. doesn't use f-strings when teaching Python
+  - why bother with the extra baggage that isn't obvious?
+- has students on everything from Chromebooks and tablets to high-end Macs
+  - if you're going to use the notebook go for it, but try to run your stuff in a single cell
+- feels it's harder to develop notional machine in a script
+  - as soon as there are cells, it's harder to track cause and effect
+  - harder to explain best practices in a notebook
+- students imprint like baby birds on the first thing they see
+  - e.g., inherited materials that started with IDLE
+  - will copy and paste an IDLE session as homework solution
+- lots of conversations like "Pandas lets us not have to use print"
+  - i.e., confuse "return" with "print"
+- Q: version control?
+  - talks about GitHub but students don't commit/merge/etc.
+  - so "Marimo plays nicely with Git" is a non-issue
+- big data science classes require students to submit work through GitHub
+  - most students have no idea what it's actually doing (copy/paste/pray)
+- STAT-107 is equivalent of Berkeley's Data-8 (https://data8.org/ and https://inferentialthinking.com/)
+- EW did some DS-with-Jupyter classes for visiting scholars with limited English
+- installation is still kind of an issue
+  - likes pythonanywhere.com
+  - really doesn't like Google CoLab: its file system idiosyncracies are a pain to teach
+  - ICRN is a locally-managed JupyterHub for cloud/cluster compute
+- most courses use VS Code because Jupyter plays nicely in there
+  - CW uses PyCharm instead
+  - they all look different, which makes teaching difficult
+  - and none of them present well (night mode, font size, etc.)
+- "resize cleanly" is a big feature for her
+- and needs to have a decent amount of code visible, esp. for low-vision students
+  - relies on pinch-and-zoom in PyCharm
+- EW uses GitBook for a11y features (uses Obsidian)
+- doesn't feel that Jupyter (or notebooks generally) have gotten better in the last five years
+- teaching online is a bit easier: doesn't have students 100' away as she does in auditorium
+  - has 30-40 students per section
