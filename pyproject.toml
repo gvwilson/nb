@@ -5,8 +5,10 @@ description = "notebook experimentation"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "jupyterlab>=4.5.4",
     "marimo>=0.19.9",
     "matplotlib>=3.10.8",
     "numpy>=2.4.2",
     "polars>=1.38.1",
+    "seaborn>=0.13.2",
 ]
