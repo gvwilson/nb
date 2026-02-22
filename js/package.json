@@ -1,0 +1,21 @@
+{
+  "name": "mew-js",
+  "version": "0.2.0",
+  "description": "JavaScript modules for Marimo education widgets",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "marimo",
+    "education",
+    "widgets"
+  ],
+  "author": "Greg Wilson",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.27.3"
+  }
+}

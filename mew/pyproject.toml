@@ -1,27 +1,30 @@
 [project]
 name = "mew"
-version = "0.1.0"
-description = "notebook experimentation"
+version = "0.4.0"
+description = "Marimo Educational Widgets"
 readme = "README.md"
-requires-python = ">=3.13"
 authors = [
     {name = "Greg Wilson", email = "gvwilson@third-bit.com"},
 ]
 license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+]
+requires-python = ">=3.13"
 dependencies = [
     "anywidget>=0.9.21",
-    "jupyterlab>=4.5.4",
-    "marimo>=0.19.9",
-    "matplotlib>=3.10.8",
-    "numpy>=2.4.2",
-    "polars>=1.38.1",
-    "seaborn>=0.13.2",
     "traitlets>=5.14.3",
 ]
 
 [dependency-groups]
 dev = [
     "build>=1.4.0",
+    "marimo>=0.19.9",
     "pytest>=9.0.2",
     "ruff>=0.15.0",
     "taskipy>=1.14.1",
@@ -45,6 +48,11 @@ artifacts = [
     "src/mew/js/*.js",
     "src/mew/js/*.js.map",
 ]
+
+[project.urls]
+Homepage = "https://github.com/gvwilson/mew"
+Documentation = "https://github.com/gvwilson/mew#readme"
+Repository = "https://github.com/gvwilson/mew"
 
 [tool.taskipy.tasks]
 build = {help = "build package", cmd = """

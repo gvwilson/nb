@@ -1,0 +1,392 @@
+/* Marimo Education Widgets - Simplified Styles */
+
+/* Container */
+.mew {
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 800px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Typography */
+.mew-question {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.mew-instructions {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Buttons */
+.mew-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+}
+
+.mew-btn-primary {
+  background: #2196F3;
+}
+
+.mew-btn-primary:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.mew-btn-secondary {
+  background: #757575;
+}
+
+.mew-btn-secondary:hover:not(:disabled) {
+  background: #616161;
+}
+
+.mew-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+/* Feedback */
+.mew-feedback {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.mew-correct {
+  color: #28a745;
+}
+
+.mew-incorrect {
+  color: #dc3545;
+}
+
+/* Multiple Choice */
+.mew-options {
+  margin-bottom: 16px;
+}
+
+.mew-option {
+  padding: 12px;
+  margin: 8px 0;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mew-option:hover:not(.mew-answered) {
+  background: #e3f2fd;
+  border-color: #2196F3;
+}
+
+.mew-option.mew-answered {
+  cursor: not-allowed;
+}
+
+.mew-option.mew-correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.mew-option.mew-incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+.mew-option.mew-faded {
+  opacity: 0.5;
+}
+
+.mew-explanation {
+  padding: 12px;
+  margin-top: 12px;
+  background: #f8f9fa;
+  border-left: 4px solid #2196F3;
+  border-radius: 4px;
+  color: #495057;
+}
+
+/* Matching - Three Column Layout */
+.mew-matching-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.mew-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Left column - Fixed items */
+.mew-item-fixed {
+  padding: 12px;
+  background: #e3f2fd;
+  border: 2px solid #2196F3;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.mew-item-fixed.mew-correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.mew-item-fixed.mew-incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+/* Middle column - Drop zones */
+.mew-drop-zone {
+  padding: 12px;
+  min-height: 44px;
+  background: #fafafa;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mew-drop-zone.mew-filled {
+  background: #f5f5f5;
+  border: 2px solid #666;
+  color: #333;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.mew-drop-zone.mew-drop-target {
+  background: #fff9c4;
+  border-color: #fbc02d;
+}
+
+.mew-drop-zone.mew-correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.mew-drop-zone.mew-incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+/* Right column - Draggable items */
+.mew-item-draggable {
+  padding: 12px;
+  background: #fff3e0;
+  border: 2px solid #ff9800;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: grab;
+  transition: opacity 0.2s;
+}
+
+.mew-item-draggable:active {
+  cursor: grabbing;
+}
+
+.mew-item-draggable.mew-dragging {
+  opacity: 0.5;
+}
+
+/* Ordering */
+.mew-ordering-items {
+  margin-bottom: 20px;
+}
+
+.mew-ordering-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 12px;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.mew-ordering-item:active {
+  cursor: grabbing;
+}
+
+.mew-ordering-item.mew-dragging {
+  opacity: 0.5;
+}
+
+.mew-ordering-item.mew-drop-target {
+  background: #fff9c4;
+  border-style: dashed;
+}
+
+.mew-ordering-item.mew-correct {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.mew-ordering-item.mew-incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+.mew-position {
+  min-width: 32px;
+  height: 32px;
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.mew-ordering-text {
+  flex: 1;
+}
+
+/* Labeling Widget */
+.mew-labeling-area {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.mew-labeling-labels,
+.mew-labeling-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mew-labeling-title {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.mew-label-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+.mew-label-num {
+  min-width: 32px;
+  height: 32px;
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.mew-label-num:active {
+  cursor: grabbing;
+}
+
+.mew-label-num.mew-dragging {
+  opacity: 0.5;
+}
+
+.mew-label-text {
+  flex: 1;
+  color: #333;
+}
+
+.mew-text-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mew-text-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.mew-label-drop-zone {
+  min-width: 60px;
+  min-height: 32px;
+  padding: 4px;
+  background: #fafafa;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-content: flex-start;
+  flex-shrink: 0;
+}
+
+.mew-label-drop-zone.mew-drop-target {
+  background: #fff9c4;
+  border-color: #fbc02d;
+}
+
+.mew-label-badge {
+  min-width: 24px;
+  height: 24px;
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.mew-label-badge:active {
+  cursor: grabbing;
+}
+
+.mew-label-badge.mew-dragging {
+  opacity: 0.5;
+}
+
+.mew-label-badge.mew-correct {
+  background: #28a745;
+}
+
+.mew-label-badge.mew-incorrect {
+  background: #dc3545;
+}
+
+.mew-text-content {
+  flex: 1;
+  padding: 6px 0;
+  line-height: 1.5;
+  color: #333;
+}
