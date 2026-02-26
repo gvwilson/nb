@@ -139,12 +139,12 @@ def _(conn, show_sql):
 
 @app.cell
 def _(mo):
-    mo.md("""
-## Exercise
+    mo.callout(mo.md("""
+**Exercise**
 
 Write a SQL query to select the sex and body mass columns from the `penguins` in that
 order, sorted such that the largest body mass appears first.
-""")
+"""), kind="info")
     return
 
 
@@ -227,15 +227,15 @@ def _(conn, show_sql):
 
 @app.cell
 def _(mo):
-    mo.md("""
-## Exercise
+    mo.callout(mo.md("""
+**Exercise**
 
 1. Write a SQL query to select the islands and species from rows 50 to 60 inclusive
    of the `penguins` table. Your result should have 11 rows.
 
 2. Modify your query to select distinct combinations of island and species from the
    same rows and compare the result to what you got in part 1.
-""")
+"""), kind="info")
     return
 
 
@@ -268,15 +268,15 @@ def _(conn, show_sql):
 
 @app.cell
 def _(mo):
-    mo.md("""
-## Exercise
+    mo.callout(mo.md("""
+**Exercise**
 
 1. Write a query to select the body masses from `penguins` that are less than 3000.0 grams.
 
 2. Write another query to select the species and sex of penguins that weight less than
    3000.0 grams. This shows that the columns displayed and those used in filtering are
    independent of each other.
-""")
+"""), kind="info")
     return
 
 
@@ -309,8 +309,8 @@ def _(conn, show_sql):
 
 @app.cell
 def _(mo):
-    mo.md("""
-## Exercise
+    mo.callout(mo.md("""
+**Exercise**
 
 1. Use the `not` operator to select penguins that are *not* Gentoos.
 
@@ -319,7 +319,7 @@ def _(mo):
    *but not both* conditions are true, but the same effect can be achieved using `and`,
    `or`, and `not`. Write a query to select penguins that are female *or* on Torgersen
    Island *but not both*.
-""")
+"""), kind="info")
     return
 
 
@@ -374,8 +374,8 @@ def _(conn, show_sql):
 
 @app.cell
 def _(mo):
-    mo.md("""
-## Exercise
+    mo.callout(mo.md("""
+**Exercise**
 
 Write a single query that calculates and returns:
 
@@ -385,7 +385,7 @@ Write a single query that calculates and returns:
 
 You can use the `||` operator to concatenate text to solve part 1,
 or look at the documentation for SQLite's `format()` function.
-""")
+"""), kind="info")
     return
 
 
