@@ -10,10 +10,13 @@ authors = [
 license = {text = "MIT"}
 dependencies = [
     "anywidget>=0.9.21",
+    "dagster>=1.12.17",
     "duckdb>=1.4.4",
     "jupyterlab>=4.5.4",
+    "luigi>=3.7.3",
     "marimo>=0.19.9",
     "matplotlib>=3.10.8",
+    "metaflow>=2.19.20",
     "numpy>=2.4.2",
     "polars>=1.38.1",
     "seaborn>=0.13.2",
