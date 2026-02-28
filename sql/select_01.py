@@ -12,15 +12,6 @@ __generated_with = "0.20.2"
 app = marimo.App()
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    This is a test.
-    I can edit Markdown cells.
-    """)
-    return
-
-
 @app.cell
 def _():
     import marimo as mo
@@ -45,17 +36,6 @@ def _(mo, textwrap):
 
     return (show_sql,)
 
-
-@app.cell
-def _():
-    exercise_style = {
-        "background-color": "#e7f3fe",
-        "border-left": "4px solid #2196F3",
-        "padding": "1em 1.5em",
-        "margin": "1em 0",
-        "border-radius": "4px",
-    }
-    return (exercise_style,)
 
 
 @app.cell
@@ -158,14 +138,14 @@ def _(conn, show_sql):
     return
 
 
-@app.cell(hide_code=True)
-def _(exercise_style, mo):
+@app.cell
+def _(mo):
     mo.md("""
     **Exercise**
 
     Write a SQL query to select the sex and body mass columns from the `penguins` in that
     order, sorted such that the largest body mass appears first.
-    """).style(exercise_style)
+    """)
     return
 
 
@@ -247,7 +227,7 @@ def _(conn, show_sql):
 
 
 @app.cell
-def _(exercise_style, mo):
+def _(mo):
     mo.md("""
     **Exercise**
 
@@ -256,7 +236,7 @@ def _(exercise_style, mo):
 
     2. Modify your query to select distinct combinations of island and species from the
        same rows and compare the result to what you got in part 1.
-    """).style(exercise_style)
+    """)
     return
 
 
@@ -288,7 +268,7 @@ def _(conn, show_sql):
 
 
 @app.cell
-def _(exercise_style, mo):
+def _(mo):
     mo.md("""
     **Exercise**
 
@@ -297,7 +277,7 @@ def _(exercise_style, mo):
     2. Write another query to select the species and sex of penguins that weight less than
        3000.0 grams. This shows that the columns displayed and those used in filtering are
        independent of each other.
-    """).style(exercise_style)
+    """)
     return
 
 
@@ -329,7 +309,7 @@ def _(conn, show_sql):
 
 
 @app.cell
-def _(exercise_style, mo):
+def _(mo):
     mo.md("""
     **Exercise**
 
@@ -340,7 +320,7 @@ def _(exercise_style, mo):
        *but not both* conditions are true, but the same effect can be achieved using `and`,
        `or`, and `not`. Write a query to select penguins that are female *or* on Torgersen
        Island *but not both*.
-    """).style(exercise_style)
+    """)
     return
 
 
@@ -394,7 +374,7 @@ def _(conn, show_sql):
 
 
 @app.cell
-def _(exercise_style, mo):
+def _(mo):
     mo.md("""
     **Exercise**
 
@@ -406,7 +386,7 @@ def _(exercise_style, mo):
 
     You can use the `||` operator to concatenate text to solve part 1,
     or look at the documentation for SQLite's `format()` function.
-    """).style(exercise_style)
+    """)
     return
 
 
