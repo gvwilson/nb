@@ -17,7 +17,7 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Basic Selection in Marimo
+    # Basic Selection
 
     This tutorial shows how to select values from a single table in a database using SQL. We have already made a connection between this notebook and our `penguins.db` database—we'll show you how to do that later—so let's have a look at the data in the `penguins` table.
     """)
@@ -213,6 +213,15 @@ def _(mo):
 def _(mo):
     mo.md(r"""
     > Try changing the query above to be `offset 5 limit 5`. Do you understand the result?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    > 1. What happens if you specify a limit that is greater than the number of rows in the table?
+    > 1. What happens if you specify an offset that is greater than the number of rows in the table?
     """)
     return
 
