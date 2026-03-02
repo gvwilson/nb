@@ -11,7 +11,7 @@ create table penguins (
 
 -- Import data.
 .mode csv
-.import penguins.csv penguins
+.import penguins/penguins.csv penguins
 
 -- Replace empty strings with nulls.
 update penguins set bill_length_mm = null where bill_length_mm = '';

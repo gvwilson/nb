@@ -635,6 +635,18 @@ wheels = [
 ]
 
 [[package]]
+name = "faker"
+version = "40.5.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/03/2a/96fff3edcb10f6505143448a4b91535f77b74865cec45be52690ee280443/faker-40.5.1.tar.gz", hash = "sha256:70222361cd82aa10cb86066d1a4e8f47f2bcdc919615c412045a69c4e6da0cd3", size = 1952684, upload-time = "2026-02-23T21:34:38.362Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4d/a9/1eed4db92d0aec2f9bfdf1faae0ab0418b5e121dda5701f118a7a4f0cd6a/faker-40.5.1-py3-none-any.whl", hash = "sha256:c69640c1e13bad49b4bcebcbf1b52f9f1a872b6ea186c248ada34d798f1661bf", size = 1987053, upload-time = "2026-02-23T21:34:36.418Z" },
+]
+
+[[package]]
 name = "fastjsonschema"
 version = "2.21.2"
 source = { registry = "https://pypi.org/simple" }
@@ -1613,6 +1625,7 @@ dependencies = [
     { name = "anywidget" },
     { name = "dagster" },
     { name = "duckdb" },
+    { name = "faker" },
     { name = "jupyterlab" },
     { name = "luigi" },
     { name = "marimo" },
@@ -1639,6 +1652,7 @@ requires-dist = [
     { name = "anywidget", specifier = ">=0.9.21" },
     { name = "dagster", specifier = ">=1.12.17" },
     { name = "duckdb", specifier = ">=1.4.4" },
+    { name = "faker", specifier = ">=40.5.1" },
     { name = "jupyterlab", specifier = ">=4.5.4" },
     { name = "luigi", specifier = ">=3.7.3" },
     { name = "marimo", specifier = ">=0.19.9" },

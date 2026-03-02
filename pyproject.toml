@@ -12,6 +12,7 @@ dependencies = [
     "anywidget>=0.9.21",
     "dagster>=1.12.17",
     "duckdb>=1.4.4",
+    "faker>=40.5.1",
     "jupyterlab>=4.5.4",
     "luigi>=3.7.3",
     "marimo>=0.19.9",
