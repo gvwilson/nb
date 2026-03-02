@@ -1,0 +1,54 @@
+Olexandr Konovalov
+2026-03-02
+
+- had never heard of marimo
+- but he came prepared with a list…
+- using Jupyter to teach
+  - started teaching Python to undergrads in 2015
+  - developed a kernel for Jupyter (working with tools like SAGE)
+  - preferred command-line (doesn't like mousing)
+  - started to like it when he discovered keyboard shortcuts
+  - tells students that story, and encourages them to learn shortcuts
+  - emphasizes reproducibility in teaching, and how Jupyter helps
+  - uses "I-we-you" approach to teaching live with notebooks
+- moved online during pandemic / teaching MSc
+  - wanted to create online Python module using Jupyter
+  - converted existing slides to Jupyter
+  - important to have easy notebook-to-slide path
+- likes RISE module for slideshows (students like as well): https://rise.readthedocs.io/
+  - but doesn't work properly for latest version of JupyterLab
+- also likes the 150 Jupyter kernels
+  - how many of those does marimo support?
+  - "two" was a disappointing answer…
+  - https://www.gap-system.org/ is a priority for him
+  - ease of extension is a must-have for OK
+- nbconvert is another must-have: allows him to script operations
+  - uses it in several ways (e.g., to pull out grading notes from master notebook)
+  - PDF from Google CoLab isn't as nice as locally-generated from nbconvert
+  - another must-have
+- preferred earlier iteration of Jupyter UI to modern
+  - "the music was always better when we were young"
+  - lots of his students use VS Code instead of JupyterLab
+  - and dark mode (he hasn't switched, but others have)
+  - students find Jupyter less visually overwhelming than VS Code
+- really likes multiple tabs/tiles in JupyterLab
+  - that was the main reason he switched from classic to Lab
+- really likes concurrent editing in Google Docs
+  - misses that in Jupyter
+  - SAGE-based https://cocalc.com/features/sage is really useful
+- what he doesn't like
+  - GAP doesn't work with Jupyter Notebook 7 (doesn't support all old kernels)
+  - PDF generation doesn't support all image formats
+- other frustrations
+  - version control: not important in first course, uses nbdime in second-year course
+    - students find nbdime difficult to start
+  - out-of-order execution: doesn't penalize severely, but if students need to learn the hard way…
+- will students be frustrated going from Marimo to Jupyter
+  - what is a feature of Python, of Marimo, of Jupyter
+- introduces widgets for interactive notebooks
+  - emphasizes reactivity
+  - sees students doing https://nteract.io/ tutorials and getting confused
+- it's a shame that the output is lost…
+  - but occasionally useful (e.g., students working with data that requires ethics approval)
+- "Jupyter Story Telling" Brian Granger and Fernando Perez
+- "Ten Rules for Reproducible Computational Analysis in Jupyter Notebooks"
