@@ -70,6 +70,38 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    > How much do the penguins weigh in total?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > The function `length` calculates the number of characters in a piece of text. Write a query that returns the length of the longest island name in the database.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > The function `round` rounds off a number, e.g., `round(1.234, 1)` produces `1.2`. Use this to display the average flipper length of all the penguins rounded to one decimal place.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    Note: rather than writing `count(species)` or `count(island)`, we often write `count(*)` to count the total number of rows. However, as we will see in the next tutorial `count(species)` and `count(*)` can sometimes produce subtly different answers.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## Grouping
 
     The query shown above applies the aggregation function to all of the rows in the table. If we want, we can apply it to just the first ten.
@@ -187,6 +219,36 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    > How many penguins of each sex were found on each island?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > What is difference in weight between the heaviest female penguin and the lightest female penguin within each species?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > Explain what the query below is calculating, and when its result would be useful.
+    >
+    > ```sql
+    > select round(body_mass_g/1000, 1) as weight, count(*)
+    > from penguins
+    > group by weight;
+    > ```
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     ## Arbitrary Choice in Aggregation
 
     The query shown below is legal SQL, but probably not what anyone would want.
@@ -244,6 +306,22 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    > Explain what the query below is calculating.
+    >
+    > ```sql
+    > select max(flipper_length_mm) as long_flipper, species, sex
+    > from penguins
+    > where sex = 'FEMALE'
+    > group by species, sex
+    > having long_flipper > 210.0;
+    > ```
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     What we _can't_ do with the tools we've seen so far is compare individual values to aggregates. For example, we can't use a query like the one below to find penguins that are heavier than average.
     """)
     return
@@ -265,6 +343,14 @@ def _(penguins):
 def _():
     mo.md(r"""
     We will see how to write this query in a couple of tutorials.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    /// note | Add a concept map here so that learners can check understanding.
     """)
     return
 

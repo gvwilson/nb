@@ -16,7 +16,7 @@ def _():
     mo.md(r"""
     # Missing Data
 
-    The biggest challenge people facing when using databases isn't remembering the order of various bits of queries. The biggest challenge is handling missing data. This tutorial builds on the filtering introduced in the previous one to show how to manage this in our queries.
+    The biggest challenge people facing when using databases isn't remembering the order of clauses in a SQL query. The biggest challenge is handling missing data. This tutorial builds on the filtering introduced in the previous one to show how to manage this in our queries.
     """)
     return
 
@@ -47,7 +47,7 @@ def _():
     mo.md(r"""
     Notice the two blanks in the `sex` column, and the fact that its subtitle says there are 3 unique values. Those blanks show the special value `null`, which SQL uses to mean "I don't know". In this case, those values tell us that the scientists who collected the penguins didn't record the sex of some of the Adelie penguins on Dream and Torgersen islands.
 
-    `null` is not the same thing as zero or an empty piece of text. The most important thing about it is that almost any question we can ask that involves a `null` produces `null` as answer. For example, we can use SQL as a very complicated desk calculator and ask, "What is 1 + 2?"
+    The most important thing about `null` is that almost any question we can ask that involves a `null` produces `null` as an answer. For example, we can use SQL as a very complicated desk calculator and ask, "What is 1 + 2?"
     """)
     return
 
@@ -66,7 +66,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    If we ask, "What is 1 + `null`", on the other hand, the answer is `null`, because one plus "I don't know" is "I don't know".
+    If we ask, "What is 1 + `null`?", the answer is `null`, because one plus "I don't know" is "I don't know".
     """)
     return
 
@@ -85,7 +85,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    We get the same thing if we subtract null, multiply by it, and so on. We also get the same thing if we do comparisons. Is `null` equal to 3? Again, the answer is `null`.
+    We get the same thing if we subtract `null`, multiply by it, and so on. (As the saying goes, "Garbage in, garbage out.") We also get the same thing if we do comparisons. Is `null` equal to 3? Again, the answer is `null`.
     """)
     return
 
@@ -123,7 +123,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    What about `null = null`? If I have two numbers, and I don't know what either is, I don't know if they're the same, so the answer is (once again) `null`.
+    What about `null = null`? If we have two numbers, and we don't know what either is, we don't know if they're the same or not, so the answer is (once again) `null`.
     """)
     return
 
@@ -136,6 +136,67 @@ def _():
         """,
         engine=engine
     )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > 1. Where does SQL put `null` values when sorting: at the start, at the end, or somewhere else?
+    > 2. Does it follow the same rule for both numbers and text?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Aggregating Nulls
+
+    If 1 + `null` is `null`, then 1 + 2 + `null` should be `null` as well. Continuing this line of thought, the sum of a column that includes one or more `null` values ought to be `null`; so should the `max`, `min`, and so on, because if we don't know all of the inputs, we can't know the output.
+
+    SQL isn't this strict because it wouldn't be useful. Instead, its aggregation functions ignore `null` values. If we calculate a sum, for example, we get the sum of all the numbers that we actually know. If we calculate an average, we get the sum of the known values divided by the number of known values (rather than by the total number of known and unknown values), and so on.
+
+    There is one common exception to this rule. If we ask for `count(sex)` in the penguins database, we get the number of penguins whose sex is known:
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(penguins):
+    _df = mo.sql(
+        f"""
+        select count(sex) from penguins;
+        """,
+        engine=engine
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    If we use `count(*)`, on the other hand, we get the total number of rows regardless of whether some values are `null` or not:
+    """)
+    return
+
+
+@app.cell
+def _(penguins):
+    _df = mo.sql(
+        f"""
+        select count(*) from penguins;
+        """,
+        engine=engine
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > Compare `sum(body_mass_g) / count(body_mass_g)` with `sum(body_mass_g) / count(*)` and with `avg(body_mass_g)`. Are the results consistent with the explanation above?
+    """)
     return
 
 
@@ -185,7 +246,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    That doesn't produce any output because the rows with null values for `sex` don't pass the test: `null` is not true. If we want the rows with missing sex, we have to ask for them explicitly. This query gives us 11 rows.
+    That doesn't produce any output because the rows with null values for `sex` don't pass the test. If we want the rows with missing sex, we have to ask for them explicitly. This query gives us 11 rows.
     """)
     return
 
@@ -225,6 +286,28 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
+    > 1. Write a query to find penguins whose body mass is known but whose sex is not.
+    > 2. Write another query to find penguins whose sex is known but whose body mass is not.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > Explain why the query shown earlier (and reproduced below) does not produce any rows:
+    >
+    > ```sql
+    > select sex from penguins
+    > where (sex != 'MALE') and (sex != 'FEMALE');
+    > ```
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
     Some programmers find `null` very annoying. Instead of putting it in their tables, they use marker values like -1 or `"NA"` to signal missing data. Doing this almost always leads to problems. For example, if we are calculating the average age of people who are 17, 19, 21, and and unknown number of years old, the sensible thing to do is add the values we know (the 17, 19, and 21) and then divide by 3. As we will see in the next tutorial, SQL will do this for us automatically _if_ we have used `null` to represent the unknown age. If we use -1, on the other hand, it's all too easy to calculate (17 + 19 + 21 - 1) / 4 and get an average age of 14. We could use `where` to filter out the -1 ages before doing the sum, but (a) we'd have to know to do that and (b) we'd have to know that this programmer used -1 instead of -999999 or something else to mean "I don't know". While it takes a bit of getting used to, it's (almost) always better to use `null` when there are holes in our data.
     """)
     return
@@ -255,7 +338,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    /// note | add exercises
+    /// note | Add a concept map here so that learners can check understanding.
     """)
     return
 
