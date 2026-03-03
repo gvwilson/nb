@@ -17,8 +17,6 @@ def _():
     # Primary and Foreign Keys
 
     The previous tutorial explained how to combine information from two tables using `inner join` and `left join`. This tutorial will explain how we can tell when it makes sense to do this, and introduce our first complex database. To start, let's look at a diagram showing the four tables in the `survey` database.
-
-    ![alt text](public/survey_tables.svg)
     """)
     return
 
@@ -32,7 +30,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Let's start with `person`, which has four columns: `persond_id`, `personal`, `family`, and `supervisor_id` (which we will discuss in the next section). `person_id` is shown in __*bold italics*__ to indicate that it is the table's *primary key*: each row in the table has a non-`null` `person_id`, and each of those values is unique. These values can therefore be used to uniquely identify specific rows in the table. We can check that by selecting all of the people and inspecting the `person_id` values by eye:
+    Let's start with `person`, which has four columns: `persond_id`, `personal`, `family`, and `supervisor_id` (which we will discuss in the next section). `person_id` is shown in __*bold italics*__ to indicate that it is the table's **primary key**: each row in the table has a non-`null` `person_id`, and each of those values is unique. These values can therefore be used to uniquely identify specific rows in the table. We can check that by selecting all of the people and inspecting the `person_id` values by eye:
     """)
     return
 
@@ -74,10 +72,10 @@ def _(person):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Now let's take a look at the `survey` table. Each survey has a survey ID, the ID of the person who did the survey, and the survey's start and end dates. `survey_id` is in __*bold italics*__, which tells us that each survey has a unique ID. `person_id`, on the other hand, is just in *italics*, and there's an arrow connecting it to the `person` table's primary key, which is also called `person_id`. The use of italics and the arrow signals that `survey.person_id` is a *foreign key*, i.e., a value stored in one table that references the primary key of another table. This relationship tells us that:
+    Now let's take a look at the `survey` table. Each survey has a survey ID, the ID of the person who did the survey, and the survey's start and end dates. `survey_id` is in __*bold italics*__, which tells us that each survey has a unique ID. `person_id`, on the other hand, is just in *italics*, and there's an arrow connecting it to the `person` table's primary key, which is also called `person_id`. The use of italics and the arrow signals that `survey.person_id` is a **foreign key**, i.e., a value stored in one table that references the primary key of another table. This relationship tells us that:
 
     1. It makes sense to use `survey.person_id = person.person_id` as a condition in a join because every `survey.person_id` is guaranteed to refer to an existing `person.person_id`.
-    2.  Several surveys might refer to the same person (or equivalently, one person might have done several surveys). This is called a *many-to-one relationship*.
+    2.  Several surveys might refer to the same person (or equivalently, one person might have done several surveys). This is called a **one-to-many relationship**.
 
     Let's write some queries. Who is in the `person` table?
     """)
@@ -140,7 +138,7 @@ def _(person, survey):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    What if we want to get Ascensión's full name in a single column? We can do that by concatenating her personal and family name using the `||` operator (which is sometimes pronounced "glue"). As the output of the query below shows, `||` does for text what `+` does for numbers.
+    What if we want to get Ascensión's full name in a single column? We can do that by concatenating her personal and family name using the `||` operator (which is sometimes called "glue"). As the output of the query below shows, `||` does for text what `+` does for numbers.
     """)
     return
 
@@ -295,7 +293,7 @@ def _(person):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    The problem is that `person.person_id` and `person.supervisor_id` are ambiguous: are we referring to the left-hand use of the `person` table or the right-hand use? To resolve this, we give each copy of the table an alias using `as`, just as we gave columns names using `as`. We also have to specify the columns that we want using two-part `table.column` notation.
+    The problem is that `person.person_id` and `person.supervisor_id` are ambiguous: are we referring to the left-hand use of the `person` table or the right-hand use? To resolve this, we give each copy of the table an **alias** using `as`, just as we gave columns names using `as`. We also have to specify the columns that we want using two-part `table.column` notation.
     """)
     return
 
@@ -320,7 +318,7 @@ def _(person):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Joining a table to itself is called a *self join*. The hard part is figuring out whether `pa` is the minion and `pb` is the supervisor or vice versa. The logic is that the supervisor of person `pb` is person `pa`, which means `pa` is the supervisor and `pb` is the minion. (Alternatively, we can inspect the first couple of rows, check back against the `person` table, and decide that way.) Let's rewrite the query to show the relationship explicitly.
+    Joining a table to itself is called a **self join**. The hard part is figuring out whether `pa` is the minion and `pb` is the supervisor or vice versa. The logic is that the supervisor of person `pb` is person `pa`, which means `pa` is the supervisor and `pb` is the minion. (Alternatively, we can inspect the first couple of rows, check back against the `person` table, and decide that way.) Let's rewrite the query to show the relationship explicitly.
     """)
     return
 
@@ -344,7 +342,7 @@ def _(person):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    > Write a query that finds the full names of everyone who doesn't have a supervisor. (Hint: you do **not** need to use a `join`.)
+    > Write a query that finds the full names of everyone who doesn't have a supervisor. (Hint: you do not need to use a `join`.)
     """)
     return
 
@@ -352,7 +350,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    > Write a query to find all the people who supervise someone who supervises someone. (Hint: you will need to join three copies of `person` together.)
+    > Write a query to find all the people who supervise someone who supervises someone. (Hint: you will need to join three copies of `person` to get the person, their boss, and their grand-boss.)
     """)
     return
 
@@ -362,9 +360,9 @@ def _():
     mo.md(r"""
     ## Many-to-Many Relationships
 
-    Each survey is done by one person, which means that surveys have a many-to-one relationship with people. However, any number of people can have ratings for any number of machines and vice versa, which means these two tables have a *many-to-many relationship*. These relationships can be hard to express in a table: if, for example, we knew that people never have ratings for more than three machines, we could add `machine_1`, `machine_2`, and `machine_3` columns to `person`, but (a) we would have to check several columns if we wanted to find a particular machine, and (b) we would have to redesign our table if the rules changed and people could have ratings for four or five machines.
+    Each survey is done by one person, which means that people have a one-to-many relationship with surveys. However, any number of people can have ratings for any number of machines and vice versa, which means these two tables have a **many-to-many relationship**. These relationships can be hard to express in a table: if, for example, we knew that people never have ratings for more than three machines, we could add `machine_1`, `machine_2`, and `machine_3` columns to `person`, but (a) we would have to check several columns if we wanted to find a particular machine, and (b) we would have to redesign our table if the rules changed and people could have ratings for four or five machines.
 
-    The most common solution is to create another intermediate table that stores the relationship between the two tables we're interested in. Such a table is sometimes called a *join table* because its purpose is to allow us to join two other tables. The `rating` table in our database is an example of such a table. Each row stores a foreign key into `person` and a foreign key into `machine`, which shows that the person has some relationship to the machine. The table also stores `level`, which is the actual rating (or `null`), but it is quite common for join tables to only store pairs of foreign keys.
+    A better approach is to create another intermediate table that stores the relationship between the two tables we're interested in. Such a table is sometimes called a **join table** because its main purpose is to allow us to join two other tables. The `rating` table in our database is an example of a join table. Each row stores a foreign key into `person` and a foreign key into `machine`, which shows that the person has some relationship to the machine. The table also stores `level`, which is the actual rating (or `null`), but it is quite common for join tables to only store pairs of foreign keys.
 
     So, which people have ratings for which machines?
     """)
@@ -381,8 +379,8 @@ def _():
             person join rating join machine
         on
             person.person_id = rating.person_id
-        	and
-        	rating.machine_id = machine.machine_id
+            and
+            rating.machine_id = machine.machine_id
         where
             rating.level is not null
         order by
@@ -415,6 +413,20 @@ def _():
     mo.md(r"""
     > Many of the `level` values in `rating` are `null`. What do you think this might mean?
     """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Check Understanding
+    """)
+    return
+
+
+@app.cell
+def _():
+    mo.image(src="06_concepts.svg", alt="concept map")
     return
 
 

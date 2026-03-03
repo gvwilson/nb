@@ -26,7 +26,7 @@ def _():
     mo.md(r"""
     ## Basic Joins
 
-    The `jobs` database has two tables. The first, called `job`, shows the credits that students can earn doing different kinds of jobs, and has just two rows and two columns:
+    The `jobs` database has two tables. The first, called `job`, shows the credits that students can earn doing different kinds of jobs, and has two rows and two columns:
 
     | name | credits |
     | :--- | ------: |
@@ -45,7 +45,7 @@ def _():
     | Gita | complain |
     | Madhi | complain |
 
-    We want to know how many credits each student has earned. The first step in answering this is to join the two tables together.
+    We want to know how many credits each student has earned. The first step in answering this is to **join** the tables together.
     """)
     return
 
@@ -65,9 +65,9 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    The `join` operation creates a temporary table in memory by combining every row of `job` with every row of `work`. Since `job` has two rows and `work` has seven, the temporary table has 2×7=14 rows. Some of these rows are useful: the first, for example, tells us that Amal did some calibration, and that calibrating is worth 1.5 credits. The second, however, combines information about calibrating with the fact that Amal did some cleaning.
+    The `join` operation creates a temporary table in memory by combining every row of `job` with every row of `work`. Since `job` has two rows and `work` has seven, the temporary table has 2×7=14 rows.
 
-    We can get rid of the rows that aren't useful by filtering with `where`:
+    Some of these rows are useful: the first, for example, tells us that Amal did some calibration, and that calibrating is worth 1.5 credits. The second, however, combines information about calibrating with the fact that Amal did some cleaning. We can get rid of the rows that aren't useful by filtering with `where`.
     """)
     return
 
@@ -90,8 +90,8 @@ def _():
     mo.md(r"""
     This query demonstrates two things:
 
-    1. When we are working with two or more tables, we refer to columns using `table_name.column_name`, as in `job.name` or `work.job`. We don't absolutely need to do this in this query, since columns' names are all unique, but it's very common to have columns with the same names in different tables. In those cases the two-part names are required to avoid ambiguity; it is therefore good practice to _always_ use two-part names when working with multiple tables.
-    2. There isn't an entry in `job` for `complain`, so `job.name = work.job` isn't true for any of the combined rows that involve complaining. On the other hand, Gita cleaned up the lab twice, so there are two records in the result for that; in other words, `join` doesn't automatically remove duplicates.
+    1. When we are working with two or more tables, we refer to columns using `table_name.column_name`, as in `job.name` or `work.job`. We don't absolutely need to do this in this query, since columns' names are all unique, but it's very common to have columns with the same names in different tables. In those cases the two-part names are required to avoid ambiguity; it is therefore good practice to *always* use two-part names when working with multiple tables.
+    2. There isn't an entry in `job` for `complain`, so `job.name = work.job` isn't true for any of the combined rows that involve complaining. On the other hand, Gita cleaned up the lab twice, so there are two records in the result for that. This shows that `join` doesn't automatically remove duplicates.
 
     While we can use `where`, the SQL standard encourages us to use a different keyword `on`:
     """)
@@ -114,9 +114,9 @@ def _(job, work):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Many (many) years ago, using `on` sometimes gave slightly higher performance. Today, though, the two forms are equivalent from the database manager's point of view. Many people still prefer `on` for readability: it shows how the rows are being combined, while `where` shows how combined rows are being filtered. As with almost everything in programming, what matters most is to pick one and stick to it so that your queries are consistent.
+    Many years ago, using `on` sometimes gave slightly higher performance. Today, though, the two forms are equivalent from the database manager's point of view. Many people still prefer `on` for readability: it shows how the rows are being combined, while `where` shows how combined rows are being filtered. As with almost everything in programming, what matters most is to pick one and stick to it so that your queries are consistent.
 
-    The standard also encourages us to write our join as `inner join`, because (as we will see in a moment) other kinds of joins exist. People often skip this and just write `join`, or even use a simple comma between the table names, but from now on we will be pedantic to make what we're doing clearer.
+    The standard also encourages us to write our join as `inner join`, because as we will see in a moment, other kinds of joins exist. People often skip this and just write `join`, or even use a simple comma between the table names, but from now on we will be pedantic to make what we're doing clearer.
 
     We are now able to answer our original question: how many credits has each student earned?
     """)
@@ -142,7 +142,7 @@ def _():
     mo.md(r"""
     ## Left Joins
 
-    The query above shows us how many credits Amal and Gita have earned, but doesn't show anything for Madhi. Ideally, we'd like a row showing that she has earned zero credits. To get this, we need to use a different kind of join called a _left join_. A left join is created by following these rules:
+    The query above shows us how many credits Amal and Gita have earned, but doesn't show anything for Madhi. Ideally, we'd like a row showing that she has earned zero credits. To get this, we need to use a different kind of join called a **left join**. A left join is created by following these rules:
 
     1. If the row from the left-hand table matches one or more rows from the right-hand table, combine them as an inner join would.
     2. If the row from the left-hand table _doesn't_ match any rows from the right-hand table, create one row in the result with the values from the left row and `null` where the values from the right-hand table would be.
@@ -214,7 +214,7 @@ def _(job, work):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    This is _almost_ what we want: we have a row for Madhi, but her `total` is `null` because that's what `sum` produces when all of the values it's adding up are `null`. We can fix this using another built-in SQL function called `coalesce`:
+    This is *almost* what we want: we have a row for Madhi, but her `total` is `null` because that's what `sum` produces when all of the values it's adding up are `null`. We can fix this using a built-in SQL function called `coalesce`:
     """)
     return
 
@@ -241,10 +241,24 @@ def _(job, work):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    `coalesce` takes two inputs. If the first is _not_ `null`, `coalesce` returns that. If the first value _is_ `null`, on the other hand, `coalesce` returns its second input. In simpler terms, it gives us a value or a default if the value is `null`.
+    `coalesce` takes two inputs. If the first is not `null`, `coalesce` returns that. If the first value *is* `null`, on the other hand, `coalesce` returns its second input. In simpler terms, it gives us a value or a default if the value is `null`.
 
-    Note that we have split this query across several lines with the keywords at the left margin and the parts of the query that belong to them indented below them. We don't have to do this, but as our queries become more complex, this style makes them easier to read. As with `join` versus `inner join`, the most important thing is to be consistent so that the reader isn't distracted by stylistic differences.
+    Note that we have split this query across several lines with the keywords at the left margin and the parts of the query that belong to them indented below them. As our queries become more complex, this style makes them easier to read. As with `join` versus `inner join`, the most important thing is to be consistent so that the reader isn't distracted by stylistic differences.
     """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Check Understanding
+    """)
+    return
+
+
+@app.cell
+def _():
+    mo.image(src="05_concepts.svg", alt="concept map")
     return
 
 

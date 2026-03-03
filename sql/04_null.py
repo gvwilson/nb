@@ -47,7 +47,7 @@ def _():
     mo.md(r"""
     Notice the two blanks in the `sex` column, and the fact that its subtitle says there are 3 unique values. Those blanks show the special value `null`, which SQL uses to mean "I don't know". In this case, those values tell us that the scientists who collected the penguins didn't record the sex of some of the Adelie penguins on Dream and Torgersen islands.
 
-    The most important thing about `null` is that almost any question we can ask that involves a `null` produces `null` as an answer. For example, we can use SQL as a very complicated desk calculator and ask, "What is 1 + 2?"
+    The most important thing about **null values** is that almost any operation that involves a `null` produces `null` as an answer. For example, we can use SQL as a very complicated desk calculator and ask, "What is 1 + 2?"
     """)
     return
 
@@ -104,7 +104,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    We get the same thing if we ask if `null` is _not_ equal to 3, because if we don't know the value, we don't know if it _isn't_ 3.
+    We get the same thing if we ask if `null` is *not* equal to 3, because if we don't know the value, we don't know if it *isn't* 3.
     """)
     return
 
@@ -123,7 +123,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    What about `null = null`? If we have two numbers, and we don't know what either is, we don't know if they're the same or not, so the answer is (once again) `null`.
+    What about `null = null`? If we have two numbers, and we don't know what either is, we don't know if they're the same or not, so the answer is once again `null`, *not* `true`.
     """)
     return
 
@@ -153,11 +153,11 @@ def _():
     mo.md(r"""
     ## Aggregating Nulls
 
-    If 1 + `null` is `null`, then 1 + 2 + `null` should be `null` as well. Continuing this line of thought, the sum of a column that includes one or more `null` values ought to be `null`; so should the `max`, `min`, and so on, because if we don't know all of the inputs, we can't know the output.
+    If 1 + `null` is `null`, then 1 + 2 + `null` should be `null` as well. Continuing this line of thought, the sum of a column that includes one or more nulls ought to be `null`; so should the `max`, `min`, and so on, because if we don't know all of the inputs, we can't know the output.
 
     SQL isn't this strict because it wouldn't be useful. Instead, its aggregation functions ignore `null` values. If we calculate a sum, for example, we get the sum of all the numbers that we actually know. If we calculate an average, we get the sum of the known values divided by the number of known values (rather than by the total number of known and unknown values), and so on.
 
-    There is one common exception to this rule. If we ask for `count(sex)` in the penguins database, we get the number of penguins whose sex is known:
+    There is one exception to this rule. If we ask for `count(sex)` in the penguins database, we get the number of penguins whose sex is known:
     """)
     return
 
@@ -226,7 +226,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    If we want to get all the rows that have a null value for `sex`, we _cannot_ do this:
+    If we want to get all the rows that have a null value for `sex`, we *cannot* do this:
     """)
     return
 
@@ -266,7 +266,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    How many times did the scientists fail to record a penguin's mass or flipper length? The answer is "twice", and in both cases they didn't record _any_ of the physical measurements.
+    How many times did the scientists fail to record a penguin's mass or flipper length? The answer is "twice", and in both cases they didn't record *any* of the physical measurements.
     """)
     return
 
@@ -318,28 +318,16 @@ def _():
     mo.md(r"""
     ## Ternary Logic
 
-    These tutorials avoid theory when they can, but a little bit will help understand how `null` works. In conventional logic, a statement is either true or false. If we have two statements `A` and `B`, then `A and B` is true when both are true, while `A or B` is true if either or both are true. We can show these rules using tables.
+    These tutorials avoid theory when they can, but a little bit will help understand how `null` works. In conventional logic, a statement is either true or false. If we have two statements `A` and `B`, then `A and B` is true when both are true, while `A or B` is true if either or both are true. These rules are sometimes referred to as **binary logic** (also called **Boolean logic**) because there are only two possible values.
 
-    /// note | Boolean tables for `and` and `or`
+    SQL is unusual among programming languages in using **ternary logic**, in which any statement can be true, false, or null. Since `null` is not `true`, `where` drops rows if the filter expression produces `null`.
     """)
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _():
-    mo.md(r"""
-    These rules are sometimes referred to as *binary logic* because there are only two possible values. SQL is unusual among programming languages in using *ternary logic*, in which any statement can be true, false, or null. The tables below show how `and` and `or` work in this case.
-
-    /// note | three-valued logic tables for `and` and `or`.
-    """)
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    /// note | Add a concept map here so that learners can check understanding.
-    """)
+    mo.image(src="04_concepts.svg", alt="concept map")
     return
 
 

@@ -38,7 +38,7 @@ def _(engine, mo, penguins):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Almost all SQL queries start with the word `select`. The value immediately after it tells the database manager what we want to see. In this case, we use the shorthand `*` to mean "all the columns". We then say `from penguins` to tell the database manager which table we want to get the data from. The semi-colon at the end marks the end of the query.
+    Almost every **query** in SQL starts with the word `select`. The value immediately after it tells the database manager what we want to see. In this case, we use the shorthand `*` to mean "all the columns". We then say `from penguins` to tell the database manager which table we want to get the data from. The semi-colon at the end marks the end of the query.
 
     Note that the database manager doesn't format the output nicely, draw the little distribution histograms above columns, or give us the page-forward/page-backward controls: all the credit for that belongs to the Marimo notebook.
     """)
@@ -98,7 +98,7 @@ def _(engine, mo, penguins):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Please don't do this: it makes your queries very hard to read. It _is_ common to use upper case for keywords like `SELECT` and `FROM`, and lower case for column names like `penguins` and `island`; whatever you choose, the most important thing is to be consistent.
+    Please don't do this: it makes your queries very hard to read. It *is* common to use upper case for keywords like `SELECT` and `FROM`, and lower case for column names like `penguins` and `island`; whatever you choose, the most important thing is to be consistent.
     """)
     return
 
@@ -110,7 +110,7 @@ def _(mo):
 
     When we look at a spreadsheet or a printed table, the rows are in a particular order. A database manager, on the other hand, might rearrange rows for the sake of efficiency as data is added or deleted, which means the rows displayed by `select` can be in whatever order it wants. If we want a particular order, we can add `order by` and the names of one or more columns to our query.
 
-    Note that we have split our query across several lines to make it easier to read. Just as SQL doesn't care about upper and lower case, it doesn't care about line breaks. As our queries become larger and more complicated, formatting them like this will make them a lot easier to understand.
+    Note that we have split the query below across several lines to make it easier to read. Just as SQL doesn't care about upper and lower case, it doesn't care about line breaks. As our queries become larger and more complicated, formatting them like this will make them a lot easier to understand.
     """)
     return
 
@@ -131,7 +131,7 @@ def _(engine, mo, penguins):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    If you page through the output above, you'll see that our penguins have been ordered by island: Biscoe before Dream, and Dream before Torgersen. Within each of those groups, the penguins are sub-ordered by species (Adelie, Chinstrap, and then Gentoo). The penguins _aren't_ ordered by sex, but they could be: as with island and species, the sorting goes from left to right.
+    If you page through the output from the query above, you'll see that our penguins have been ordered by island: Biscoe before Dream, and Dream before Torgersen. Within each of those groups, the penguins are sub-ordered by species (Adelie, Chinstrap, and then Gentoo). The penguins aren't ordered by sex, but they could be: as with island and species, the sorting goes from left to right.
     """)
     return
 
@@ -147,7 +147,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    > What do you think will happen if you select `island` and `species` but `order by sex`? (How) can you tell if your prediction is correct?
+    > What do you think will happen if you select `island` and `species` but `order by sex`? How can you tell if your prediction is correct?
     """)
     return
 
@@ -196,7 +196,7 @@ def _(engine, mo, penguins):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Selecting one chunk of data after another is called *paging*. Applications frequently do this in order to save memory and bandwidth: people can't look at 100,000 rows at once, so there's usually no point grabbing that many in one gulp.
+    Selecting one chunk of data after another is called **paging**. Applications frequently do this in order to save memory and bandwidth: people can't look at 100,000 rows at once, so there's usually no point grabbing that many in one gulp.
     """)
     return
 
@@ -229,7 +229,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    > Suppose your program is paging through a table while another application is adding and deleting rows. What would you want to happen? What do you think **will** happen?
+    > Suppose your program is paging through a table while another application is adding and deleting rows. What would you want to happen? What do you think will happen?
     """)
     return
 
@@ -330,16 +330,14 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    /// note | Add a concept map here so that learners can check understanding.
+    ## Check Understanding
     """)
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""
-    /// note | Highlight definitions in Markdown cells.
-    """)
+    mo.image(src="01_concepts.svg", alt="concept map")
     return
 
 

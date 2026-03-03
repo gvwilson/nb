@@ -16,7 +16,7 @@ def _():
     mo.md(r"""
     # Filtering
 
-    The previous tutorial showed how to select specific columns from a database table, and how to page through the data that a query returns. However, people almost always filter data based on its properties rather than on its position in a table. To see how this works, let's start by looking at the combinations of species, island, and sex in the `penguins` table.
+    The previous tutorial showed how to select specific columns from a database table, and how to page through the data that a query returns. However, people almost always **filter** data based on its properties rather than on its position in a table. To see how this works, let's look at the combinations of species, island, and sex in the `penguins` table.
     """)
     return
 
@@ -60,9 +60,9 @@ def _():
     mo.md(r"""
     There are several noteworthy things in this query:
 
-    1. We don't have to use `distinct`. If we leave it out, we get _all_ the penguins on Dream island. (We included it to make the output easier to read without paging.)
-    2. The `where` clause _must_ come after the `from` clause. SQL is very picky about ordering…
-    3. We don't put quotation marks around `island` because it's the name of a column. We _do_ put quotes around `"Dream"` because it's an actual literal piece of text.
+    1. We don't have to use `distinct`. If we leave it out, we get *all* the penguins on Dream island. (We included it to make the output easier to read without paging.)
+    2. The `where` clause *must* come after the `from` clause. SQL is very picky about ordering…
+    3. We don't put quotation marks around `island` because it's the name of a column. We *do* put quotes around `"Dream"` because it's an actual literal piece of text.
     4. We use a single equals sign `=` to check for equality. This is different from most programming languages, which use `==`.
     """)
     return
@@ -79,8 +79,8 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    > 1. Change `island` to `ISLAND` and re-run the query: what happens?
-    > 2. Change `"Dream"` to `"DREAM"`: what happens?
+    > 1. Change the column name `island` to `ISLAND` and re-run the query: what happens?
+    > 2. Change the text value `"Dream"` to `"DREAM"`: what happens?
     """)
     return
 
@@ -135,7 +135,7 @@ def _():
     mo.md(r"""
     ## Combining Conditions
 
-    We can combine conditions using `and` and `or`. `and` is the simpler of the two: when we write `where condition_1 and condition_2`, we get the rows where _both_ conditions are true.
+    We can combine conditions using `and` and `or`. `and` is the simpler of the two: when we write `where condition_1 and condition_2`, we get the rows where *both* conditions are true.
     """)
     return
 
@@ -155,7 +155,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    If we use `or`, we get rows where _either or both_ condition is true. This is different from common English usage: if you tell a child that they can have an ice cream cone or a chocolate bar, you mean "either/or". When you use `or` in SQL, on the other hand, it means "if any of the conditions is true". For example, the query below gets all of the penguins on Biscoe island, as well as all of the Gentoo penguins. Some penguins satisfy both conditions (the Adelie penguins on Biscoe island), some satisfy just one (the Adelies on Torgersen and the Gentoos on Biscoe). Penguins that don't satisfy either, like Chinstrap penguins on Dream island, don't show up at all.
+    If we use `or`, we get rows where *either or both* condition is true. This is different from common English usage: if you tell a child that they can have an ice cream cone or a chocolate bar, you mean "either/or". When you use `or` in SQL, on the other hand, it means "if any of the conditions is true". For example, the query below gets all of the penguins on Biscoe island, as well as all of the Gentoo penguins. Some penguins satisfy both conditions (the Adelie penguins on Biscoe island), some satisfy just one (the Adelies on Torgersen and the Gentoos on Biscoe). Penguins that don't satisfy either, like Chinstrap penguins on Dream island, don't show up at all.
     """)
     return
 
@@ -239,8 +239,8 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    > 1. Write a query to find all of the penguins whose bill length is __greater than__ their bill depth.
-    > 2. Write another query to find all of the penguins whose bill length is __less than__ their bill depth. What do you notice about the output of this query?
+    > 1. Write a query to find all of the penguins whose bill length is greater than their bill depth.
+    > 2. Write another query to find all of the penguins whose bill length is less than their bill depth. What do you notice about the output of this query?
     """)
     return
 
@@ -256,8 +256,14 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    /// note | Add a concept map here so that learners can check understanding.
+    ## Check Understanding
     """)
+    return
+
+
+@app.cell
+def _():
+    mo.image(src="02_concepts.svg", alt="concept map")
     return
 
 

@@ -16,7 +16,7 @@ def _():
     mo.md(r"""
     # Aggregating and Grouping
 
-    The queries we wrote in the previous two tutorials operated on each row separately. We often want to ask questions about groups of rows, such as "how heavy is the largest penguin we weighed?" or "how many Gentoo penguins did we see?" This tutorial looks first at how to write queries that *aggregate* data, and then at how to calculate aggregate values for several subsets of our data simultaneously.
+    The queries we wrote in the previous two tutorials operated on each row separately. We often want to ask questions about groups of rows, such as "how heavy is the largest penguin we weighed?" or "how many Gentoo penguins did we see?" This tutorial looks first at how to write queries that **aggregate** data, and then at how to calculate aggregate values for several subsets of our data simultaneously.
     """)
     return
 
@@ -26,7 +26,7 @@ def _():
     mo.md(r"""
     ## Aggregation
 
-    Let's start by finding out how heavy the heaviest penguin in our dataset is. To do this, we use a function called `max`, and give it the name of the column it is to get data from. To make the result more readable, we will call the result `heaviest`.
+    Let's start by finding out how heavy the heaviest penguin in our dataset is. To do this, we use a function called `max`, and give it the name of the column it is to get data from. To make the result more readable, we will use `as` to call the result `heaviest`.
     """)
     return
 
@@ -94,7 +94,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Note: rather than writing `count(species)` or `count(island)`, we often write `count(*)` to count the total number of rows. However, as we will see in the next tutorial `count(species)` and `count(*)` can sometimes produce subtly different answers.
+    Note: rather than writing `count(species)` or `count(island)`, we often write `count(*)` to count the total number of rows. However, as we will see in the next tutorial `count(species)` and `count(*)` can sometimes produce slightly different answers.
     """)
     return
 
@@ -125,7 +125,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    The order of operations here is important. We aren't asking SQL to calculate an average and then give us the first ten rows of the result. Instead, we are asking it to get the first ten rows and _then_ calculate the average. This matters more when we use `where` to filter the data: the filtering happens before SQL applies the function. This lets us do things like calculate the average mass of all the Gentoo penguins.
+    The order of operations here is important. We aren't asking SQL to calculate an average and then give us the first ten rows of the result. Instead, we are asking it to get the first ten rows and *then* calculate the average of those. This matters more when we use `where` to filter the data: the filtering happens before SQL applies the function, which lets us do things like calculate the average mass of all the Gentoo penguins.
     """)
     return
 
@@ -146,7 +146,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    But what if we want to calculate the average mass for each species? We could write three queries, one for each species, but (a) that would be annoying and (b) if someone adds Emperor penguins to the data and we don't remember to update our query, we won't get the full picture.
+    But what if we want to calculate the average mass for all of the species? We could write three queries, one for each species, but (a) that would be annoying and (b) if someone adds Emperor penguins to the data and we don't remember to update our query, we won't get the full picture.
 
     What we should do instead is tell SQL to group the data based on the values in one or more columns, and then calculate the aggregate value within each group.
     """)
@@ -169,7 +169,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    Since there are three species, we get three rows of output. Unfortunately, we don't know which average corresponds to which species. To get that, we just add the name of the `species` column to the `select` clause.
+    Since there are three species, we get three rows of output. Unfortunately, we don't know which average corresponds to which species. To get that, we add the `species` column to the `select` clause.
     """)
     return
 
@@ -272,7 +272,7 @@ def _(penguins):
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    The rule that SQL follows is this: if we have created groups using `group by`, and we _don't_ specify how to combine the values in a group for a particular column, then the database picks one of the values for that column in that group however it wants. For example, since we only grouped by `species`, but we're asking to show `sex`, the result shows one of the values for `sex` for each species. Similarly, since we didn't specify how to combine the various body masses for each species, the three values shown each come from a penguin of that species, but we don't know (and can't control) which one.
+    The rule that SQL follows is this: if we have created groups using `group by`, and we _don't_ specify how to combine the values in a group for a particular column, then the database picks one of the values for that column in that group arbitrarily. For example, since we only grouped by `species`, but we're asking to show `sex`, the result shows one of the values for `sex` for each species. Similarly, since we didn't specify how to combine the various body masses for each species, the three values shown each come from a penguin of that species, but we don't know (and can't control) which one.
 
     We used this behavior earlier when we selected `species` and `avg(body_mass_g)` after grouping by `species`. Since all of the penguins within a group are of the same species, it doesn't matter which `species` value the database shows us for that group: they're all the same. If we forget to choose an aggregation function by accident, though, the answer will be plausible (because it's an actual value) but wrong.
     """)
@@ -284,7 +284,7 @@ def _():
     mo.md(r"""
     ## Filtering After Aggregation
 
-    Just as we can use `where` to filter individual rows _before_ aggregating (or if we're not aggregating at all), we can use `having` to filter aggregated values. For example, the query below finds those combinations of sex and species whose average weight is 4kg or more.
+    Just as we can use `where` to filter individual rows before aggregating (or if we're not aggregating at all), we can use `having` to filter aggregated values. For example, the query below finds those combinations of sex and species whose average weight is 4kg or more.
     """)
     return
 
@@ -322,7 +322,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    What we _can't_ do with the tools we've seen so far is compare individual values to aggregates. For example, we can't use a query like the one below to find penguins that are heavier than average.
+    What we *can't* do with the tools we've seen so far is compare individual values to aggregates. For example, we can't use a query like the one below to find penguins that are heavier than average.
     """)
     return
 
@@ -350,8 +350,14 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    /// note | Add a concept map here so that learners can check understanding.
+    ## Check Understanding
     """)
+    return
+
+
+@app.cell
+def _():
+    mo.image(src="03_concepts.svg", alt="concept map")
     return
 
 
