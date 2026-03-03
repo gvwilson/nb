@@ -9,7 +9,9 @@ authors = [
 ]
 license = {text = "MIT"}
 dependencies = [
+    "altair>=6.0.0",
     "anywidget>=0.9.21",
+    "asimpy>=0.14.0",
     "dagster>=1.12.17",
     "duckdb>=1.4.4",
     "faker>=40.5.1",
