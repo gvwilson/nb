@@ -1,8 +1,21 @@
-# Marimo Education Widgets
+# Miscellaneous Marimo Notebook Material
+
+-   `bib/*`: bibliography of material related to notebooks in education and getting educators to adopt new tools
+-   `docs/*`: miscellaneous documents (e.g., learner personas)
+    -   This is superseded by Notion
+-   `jenkins/*`: converting one of David Jenkins' notebooks
+-   `js/*`: JavaScript for Marimo Educational Widgets (MEW)
+-   `mew_examples.py`: notebook using MEW
+-   `parallel/*`: vibe-coded experiments connecting Marimo to Dagster, Luigi, and Metaflow
+-   `sql/*`: SQL tutorial in Marimo notebooks
+-   `src/*`: Python for MEW
+-   `tests/*`: tests for MEW
+
+## Marimo Educational Widgets
 
 Three interactive educational widgets for Marimo computational notebooks using AnyWidget.
 
-## Widgets Overview
+### Widgets Overview
 
 Multiple Choice Widget (`MultipleChoiceWidget`)
 :   Presents a question with multiple answer options.
@@ -14,7 +27,7 @@ Matching Widget (`MatchingWidget`)
 Ordering Widget (`OrderingWidget`)
 :   Students arrange text items in the correct sequence by moving them up and down.
 
-## Installation
+### Installation
 
 Requires:
 
@@ -42,7 +55,7 @@ marimo edit example_notebook.py
 
 This will open an interactive notebook with all three widget types.
 
-## Create Your First Question
+### Create Your First Question
 
 Create a new file `my_quiz.py`:
 
