@@ -175,8 +175,24 @@ def _():
     3. But `(Amal, complain)` _doesn't_ match anything from `job`, so we get a row with the values from the left table (`Amal` and `complain`) and `null` for `name` and `work`.
     4. We then get two rows for Gita cleaning because there's a match…
     5. …and two rows with `null` values for Gita and Madhi complaining because there isn't.
+    """)
+    return
 
-    We can sum up everyone's credits:
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    > What do we get if we invert the order of the tables, i.e., do `job left join work`? Why?
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _():
+    mo.md(r"""
+    ## Coalesce
+
+    We can now sum up everyone's credits:
     """)
     return
 
