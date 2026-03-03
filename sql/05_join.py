@@ -16,7 +16,7 @@ def _():
     mo.md(r"""
     # Combining Tables
 
-    Relational databases get their name from the fact that they store the relations between tables. This tutorial shows how to connect and combine information from multiple tables; along the way, it also shows how to represent a database schema as a diagram.
+    Relational databases get their name from the fact that they store the relations between tables. This tutorial shows how to connect and combine information from multiple tables. We will save most of the exercises for the next tutorial, where we start working with our first complex database.
     """)
     return
 

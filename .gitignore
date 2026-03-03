@@ -22,6 +22,9 @@ coverage.json
 # MacOS
 .DS_store
 
+# Drawing tools
+*.bkp
+
 # Marimo
 __marimo__
 
