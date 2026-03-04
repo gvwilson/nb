@@ -18,7 +18,7 @@ class MatchingWidget(anywidget.AnyWidget):
     """
     
     # Load JavaScript from external file
-    _esm = Path(__file__).parent / "js" / "matching.js"
+    _esm = Path(__file__).parent / "js" / "dist" / "matching.js"
     
     # Traitlets
     question = traitlets.Unicode("").tag(sync=True)

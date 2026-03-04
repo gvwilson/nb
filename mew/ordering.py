@@ -18,7 +18,7 @@ class OrderingWidget(anywidget.AnyWidget):
     """
     
     # Load JavaScript from external file
-    _esm = Path(__file__).parent / "js" / "ordering.js"
+    _esm = Path(__file__).parent / "js" / "dist" / "ordering.js"
     
     # Traitlets
     question = traitlets.Unicode("").tag(sync=True)

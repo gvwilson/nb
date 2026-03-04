@@ -33,7 +33,7 @@ node_modules/
 
 # Build output
 dist/
-src/mew/js/
+mew/js/dist/
 
 # Logs
 npm-debug.log*

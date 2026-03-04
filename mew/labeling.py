@@ -18,7 +18,7 @@ class LabelingWidget(anywidget.AnyWidget):
     """
     
     # Load JavaScript from external file
-    _esm = Path(__file__).parent / "js" / "labeling.js"
+    _esm = Path(__file__).parent / "js" / "dist" / "labeling.js"
     
     # Traitlets
     question = traitlets.Unicode("").tag(sync=True)
