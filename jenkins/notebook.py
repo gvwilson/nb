@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.20.2"
+__generated_with = "0.20.4"
 app = marimo.App()
 
 with app.setup:
@@ -146,6 +146,7 @@ def _():
     # Use NumPy (np) to load the data, then extract values from each row.
     # Note that we use `_i` as a loop variable instead of just `i` because
     # we want to be able to use the same variable in other cells.
+    # FIXME: extract columns using NumPy instead of a loop?
     mydata = np.loadtxt('mass16round-sum.txt')
     for _i in range(0, len(mydata)):
         AME2016k.append(mydata[_i][0])  # Remember, Python starts counting at 0
@@ -232,11 +233,11 @@ def _():
 
     $\delta(A)$ is the pairing-energy term
 
-    $$\delta(A) = \left\{\begin{array}{ll}
-                           a_P A^{-3/4} & for~even-even~nuclei \\
-                           0            & for~odd~nuclei \\
-                           -a_P A^{-3/4} & for~odd-odd~nuclei \\
-                           \end{array}\right.$$
+    $\delta(A) = \left\{\begin{array}{ll}
+                        a_P A^{-3/4} & \text{for even-even nuclei} \\
+                        0            & \text{for odd nuclei} \\
+                        -a_P A^{-3/4} & \text{for odd-odd nuclei} \\
+                        \end{array}\right.$
     """)
     return
 
@@ -466,11 +467,11 @@ def _():
 
     Nuclear Science and Techniques, [31:9, 3 January 2020](https://doi.org/10.1007/s41365-019-0718-8)
 
-      $$\delta(A) = \left\{\begin{array}{ll}
-                          a_P A^{-1/2} & for~even-even~nuclei \\
-                          0            & for~odd~nuclei \\
-                          -a_P A^{-1/2} & for~odd-odd~nuclei \\
-                          \end{array}\right.$$
+    $\delta(A) = \left\{\begin{array}{ll}
+                        a_P A^{-1/2} & \text{for even-even nuclei} \\
+                        0            & \text{for odd nuclei} \\
+                        -a_P A^{-1/2} & \text{for odd-odd nuclei} \\
+                        \end{array}\right.$
     """)
     return
 
@@ -535,7 +536,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Mass table based on the UNEDF0 Skyrme density functional:
+    # Mass table based on the UNEDF0 Skyrme density functional
 
     M. Kortelainen et al., [Phys. Rev. C 82, 024313 (2010)](https://journals.aps.org/prc/abstract/10.1103/PhysRevC.82.024313)
 
