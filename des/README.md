@@ -1,7 +1,7 @@
 # Queues and Insights
 
-- [Arrival Process: The Building Block of Every Queue](arrival_process.py)
-- [Server Utilization: The Most Important Number in Queueing Theory](server_utilization.py)
+- **[Arrival Process: The Building Block of Every Queue](arrival_process.py)**
+- **[Server Utilization: The Most Important Number in Queueing Theory](server_utilization.py)**
 - [Queue Formation: Randomness Creates Waiting Even with Spare Capacity](queue_formation.py)
 - **[Little's Law: The Universal Conservation Law of Queues](littles_law.py)**
 - [Sojourn Time: How Long Does a Customer Actually Spend in the System?](sojourn_time.py)
