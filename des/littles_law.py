@@ -23,6 +23,8 @@ def _(mo):
     mo.md(r"""
     # Little's Law
 
+    ## *The Universal Conservation Law of Queues*
+
     Little's Law states that in a stable system, L = λW, where:
 
     - L = mean number of customers in the system
