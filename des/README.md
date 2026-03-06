@@ -12,5 +12,5 @@
 - **[The Convoy Effect: One Slow Job Ruins Everyone's Day](convoy_effect.py)**
 - **[Priority Starvation: When High-Priority Traffic Crowds Out Low-Priority Jobs](priority_starvation.py)**
 - **[Tandem Queue Blocking: Variability Travels Downstream](tandem_queue.py)**
+- **[Rush Hour Displacement: If Everyone Avoids the Rush, It Shifts](rush_hour.py)**
 - [Braess's Paradox: Adding a Road Makes Traffic Worse](braess_paradox.py)
-- [Rush Hour Displacement: If Everyone Avoids the Rush, It Shifts](rush_hour.py)
