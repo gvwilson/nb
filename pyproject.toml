@@ -15,16 +15,19 @@ dependencies = [
     "dagster>=1.12.17",
     "duckdb>=1.4.4",
     "faker>=40.5.1",
+    "jupyter>=1.1.1",
     "jupyterlab>=4.5.4",
     "luigi>=3.7.3",
     "marimo>=0.19.9",
     "matplotlib>=3.10.8",
     "metaflow>=2.19.20",
     "numpy>=2.4.2",
+    "pandas>=3.0.1",
     "polars>=1.38.1",
     "seaborn>=0.13.2",
     "sqlglot>=29.0.1",
     "traitlets>=5.14.3",
+    "vega-datasets>=0.9.0",
 ]
 
 [dependency-groups]
