@@ -10,7 +10,7 @@
 - **[Late Merge: Courtesy Reduces Throughput](late_merge.py)**
 - **[The Inspector's Paradox: Why the Bus Is Always Late](inspectors_paradox.py)**
 - **[The Convoy Effect: One Slow Job Ruins Everyone's Day](convoy_effect.py)**
+- **[Priority Starvation: When High-Priority Traffic Crowds Out Low-Priority Jobs](priority_starvation.py)**
+- **[Tandem Queue Blocking: Variability Travels Downstream](tandem_queue.py)**
 - [Braess's Paradox: Adding a Road Makes Traffic Worse](braess_paradox.py)
-- [Priority Starvation: When High-Priority Traffic Crowds Out Low-Priority Jobs](priority_starvation.py)
 - [Rush Hour Displacement: If Everyone Avoids the Rush, It Shifts](rush_hour.py)
-- [Tandem Queue Blocking: Variability Travels Downstream](tandem_queue.py)
