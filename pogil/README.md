@@ -2,8 +2,8 @@
 
 ## Tutorials written in the Socratic / question-interleaved-example style
 
-- CS-POGIL activities (cspogil.org / cspogil.github.io):
-The CS-POGIL project has produced 58+ classroom-ready guided-inquiry activities for CS courses, spanning Python, data structures, software design, and related topics. The site contains activities and other resources to support using POGIL in Computer Science and related disciplines. Each activity presents a short model (code or output), then drives learners through a sequence of questions to extract a principle, before asking them to apply it. The structure is closely aligned with what you want: tiny examples, no exposition dump, questions before answers. Start at [cspogil.github.io](https://cspogil.github.io) or [cspogil.org](https://cspogil.org).
+- CS-POGIL activities (cspogil.github.io):
+The CS-POGIL project has produced 58+ classroom-ready guided-inquiry activities for CS courses, spanning Python, data structures, software design, and related topics. The site contains activities and other resources to support using POGIL in Computer Science and related disciplines. Each activity presents a short model (code or output), then drives learners through a sequence of questions to extract a principle, before asking them to apply it. The structure is closely aligned with what you want: tiny examples, no exposition dump, questions before answers. Start at [cspogil.github.io](https://cspogil.github.io).
 
 - SERC POGIL examples collection (serc.carleton.edu):
 The Science Education Resource Center hosts a curated set of POGIL activities across disciplines. This pedagogical resource page offers a curated collection of POGIL classroom activities across disciplines such as biology, chemistry, geoscience, and physics, organized by subject and grade level. Although most are not CS-specific, the format — model, then directed questions, then application — is exactly the template you'd adapt for Altair. See [serc.carleton.edu/sp/library/pogil/examples.html](https://serc.carleton.edu/sp/library/pogil/examples.html).
