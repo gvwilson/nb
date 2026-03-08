@@ -10,6 +10,7 @@ authors = [
 license = {text = "MIT"}
 dependencies = [
     "altair>=6.0.0",
+    "anthropic>=0.84.0",
     "anywidget>=0.9.21",
     "asimpy>=0.14.0",
     "dagster>=1.12.17",
@@ -24,6 +25,7 @@ dependencies = [
     "numpy>=2.4.2",
     "pandas>=3.0.1",
     "polars>=1.38.1",
+    "pydantic-ai-slim>=1.67.0",
     "seaborn>=0.13.2",
     "sqlglot>=29.0.1",
     "traitlets>=5.14.3",
