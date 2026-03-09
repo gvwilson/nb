@@ -11,6 +11,8 @@
 -   `src/*`: Python for MEW
 -   `tests/*`: tests for MEW
 
+Note: `brew install eccodes` or equivalent before trying to run `kis/*.py` notebook.
+
 ## Marimo Educational Widgets
 
 Three interactive educational widgets for Marimo computational notebooks using AnyWidget.

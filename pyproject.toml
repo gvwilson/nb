@@ -13,6 +13,8 @@ dependencies = [
     "anthropic>=0.84.0",
     "anywidget>=0.9.21",
     "asimpy>=0.14.0",
+    "cartopy>=0.25.0",
+    "cfgrib>=0.9.15.1",
     "dagster>=1.12.17",
     "duckdb>=1.4.4",
     "faker>=40.5.1",
@@ -22,6 +24,7 @@ dependencies = [
     "marimo>=0.19.9",
     "matplotlib>=3.10.8",
     "metaflow>=2.19.20",
+    "metpy>=1.7.1",
     "numpy>=2.4.2",
     "pandas>=3.0.1",
     "polars>=1.38.1",
@@ -30,6 +33,7 @@ dependencies = [
     "sqlglot>=29.0.1",
     "traitlets>=5.14.3",
     "vega-datasets>=0.9.0",
+    "xarray>=2026.2.0",
 ]
 
 [dependency-groups]
