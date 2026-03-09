@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.20.2"
+__generated_with = "0.20.4"
 app = marimo.App(width="medium")
 
 
@@ -331,13 +331,9 @@ def _(mo):
 def _(mo):
     mo.md(r"""
     ## Check Understanding
+
+    ![concept map](/public/01_concepts.svg)
     """)
-    return
-
-
-@app.cell
-def _(mo):
-    mo.image(src="01_concepts.svg", alt="concept map")
     return
 
 

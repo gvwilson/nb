@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.20.2"
+__generated_with = "0.20.4"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -51,7 +51,7 @@ def _():
 
 
 @app.cell
-def _():
+def _(job, work):
     _df = mo.sql(
         f"""
         select *
@@ -73,7 +73,7 @@ def _():
 
 
 @app.cell
-def _():
+def _(job, work):
     _df = mo.sql(
         f"""
         select *
@@ -252,13 +252,9 @@ def _():
 def _():
     mo.md(r"""
     ## Check Understanding
+
+    ![concept map](/public/05_concepts.svg)
     """)
-    return
-
-
-@app.cell
-def _():
-    mo.image(src="05_concepts.svg", alt="concept map")
     return
 
 
