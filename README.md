@@ -1,17 +1,28 @@
 # Miscellaneous Marimo Notebook Material
 
--   `bib/*`: bibliography of material related to notebooks in education and getting educators to adopt new tools
--   `docs/*`: miscellaneous documents (e.g., learner personas)
-    -   This is superseded by Notion
--   `jenkins/*`: converting one of David Jenkins' notebooks
--   `js/*`: JavaScript for Marimo Educational Widgets (MEW)
--   `mew_examples.py`: notebook using MEW
--   `parallel/*`: vibe-coded experiments connecting Marimo to Dagster, Luigi, and Metaflow
--   `sql/*`: SQL tutorial in Marimo notebooks
--   `src/*`: Python for MEW
--   `tests/*`: tests for MEW
+| directory | contents |
+| :-------- | :------- |
+| `altair` | University of Washington "Intro to Altair" tutorial notebooks |
+| `barba` | Prof. Lorena Barba's "12 Steps to Navier-Stokes" notebooks |
+| `bib` | material related to notebooks in education and getting educators to adopt new tools |
+| `des` | unexpected results from queueing theory with discrete event simulations in notebooks |
+| `dist` | local Python package directory |
+| `docs` | miscellaneous documents (largely superseded by Notion pages) |
+| `images` | experimenting with `/public` image paths |
+| `jenkins` | converting one of David Jenkins' notebooks |
+| `js` | JavaScript for Marimo Educational Widgets (MEW) |
+| `kis` | converting one of Amanda Kis's meteorological notebooks |
+| `mew` | Marimo Educational Widgets |
+| `nederbragt` | converting some of Lex Nederbragt's bioinformatics notebooks |
+| `parallel` | vibe-coded experiments connecting Marimo to Dagster, Luigi, and Metaflow |
+| `pogil` | Process Oriented Guided Inquiry Learning material |
+| `sql` | SQL tutorial in Marimo notebooks |
+| `turtle` | animated turtle graphics in Marimo notebook |
 
-Note: `brew install eccodes` or equivalent before trying to run `kis/*.py` notebook.
+## Installation
+
+-   `uv venv` and activate and `uv sync --dev`
+-   `brew install eccodes` or equivalent before trying to run `kis/*.py` notebook.
 
 ## Marimo Educational Widgets
 
