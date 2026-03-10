@@ -1,0 +1,73 @@
+\documentclass[11pt]{scrartcl}
+\usepackage{tkz-graph}
+\usepackage{tikz}
+\usetikzlibrary{shapes,shapes.misc,arrows}
+
+% define colours
+\definecolor{CS101Red}   {RGB} {228,  0,102}
+\definecolor{CS101Yellow}{RGB} {234,196, 53}
+\definecolor{CS101Green} {RGB} {  3,206,164}
+\definecolor{CS101Blue}  {RGB} { 52, 89,149}
+\definecolor{CS101Grey}  {RGB} { 93, 93, 93}
+\definecolor{CS101White} {RGB} {255,255,255}
+
+% use Ubuntu fonts:
+\usepackage{mathspec}
+\setallmainfonts(Digits,Latin,Symbols){Ubuntu Mono Bold}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Ubuntu Mono Bold}
+\setsansfont{Ubuntu Bold}
+\setmonofont{Ubuntu Mono Bold}
+
+\newcommand{\maincolor}{CS101Blue}
+\newcommand{\mainline}{0.025in}
+\newcommand{\auxcolor}{CS101Yellow}
+\newcommand{\goodcolor}{CS101Green}
+\newcommand{\badcolor}{CS101Red}
+
+%\tikzstyle{vertex}= [diamond, draw=\maincolor, line width=\mainline,
+%    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}
+ \SetUpEdge[lw         = 0.025in,
+            color      = \maincolor,
+            labelcolor = white]
+  \GraphInit[vstyle=Normal]
+  \SetGraphUnit{3}
+  \tikzset{VertexStyle/.append  style={rounded rectangle,
+                                        fill,
+                                        line width = 0.025in,
+                                        draw=\maincolor}}
+
+  \Vertex[x=0,y=6]{the}	% 100% (beginning)
+   \Vertex[x=3,y=9]{time}	%  50%
+    \Vertex[x=6,y=10.5]{goes}	%   25%
+    \Vertex[x=6,y=9.5]{hath}	%   25%
+    \Vertex[x=6,y=8.5]{is}	%   25%
+    \Vertex[x=6,y=7.5]{may}	%   25%
+   \Vertex[x=3,y=6]{smoke}	%  25%
+    \Vertex[x=6,y=6]{of}	%   100%
+   \Vertex[x=3,y=3]{privy}	%  25%
+    \Vertex[x=6,y=4]{coffer}	%  33⅓%
+    \Vertex[x=6,y=3]{council}	%  33⅓%
+    \Vertex[x=6,y=2]{maidens}	%  33⅓%
+
+  \tikzset{EdgeStyle/.style={->,draw=\auxcolor}}
+  \Edge[label=$50$\%](the)(time)
+  \Edge[label=$25$\%](the)(smoke)
+  \Edge[label=$25$\%](the)(privy)
+   \Edge[label=$25$\%](time)(goes)
+   \Edge[label=$25$\%](time)(hath)
+   \Edge[label=$25$\%](time)(is)
+   \Edge[label=$25$\%](time)(may)
+
+   \Edge[label=$100$\%](smoke)(of)
+
+   \Edge[label=$33⅓$\%](privy)(coffer)
+   \Edge[label=$33⅓$\%](privy)(council)
+   \Edge[label=$33⅓$\%](privy)(maidens)
+\end{tikzpicture}
+\end{document}

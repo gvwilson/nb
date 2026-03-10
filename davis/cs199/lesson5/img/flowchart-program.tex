@@ -1,0 +1,75 @@
+\documentclass{article}
+% Inspired by http://www.texample.net/tikz/examples/simple-flow-chart/
+
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,shapes.misc,arrows}
+
+% define colours
+\definecolor{CS101Red}   {RGB} {228,  0,102}
+\definecolor{CS101Yellow}{RGB} {234,196, 53}
+\definecolor{CS101Green} {RGB} {  3,206,164}
+\definecolor{CS101Blue}  {RGB} { 52, 89,149}
+\definecolor{CS101Grey}  {RGB} { 93, 93, 93}
+\definecolor{CS101White} {RGB} {255,255,255}
+
+% use Ubuntu fonts:
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Ubuntu Mono Bold}
+\setsansfont{Ubuntu Bold}
+\setmonofont{Ubuntu Mono Bold}
+
+\begin{document}
+\pagestyle{empty}
+
+\newcommand{\maincolor}{CS101Blue}
+\newcommand{\mainline}{0.025in}
+\newcommand{\auxcolor}{CS101Yellow}
+\newcommand{\goodcolor}{CS101Green}
+\newcommand{\badcolor}{CS101Red}
+
+% Define block styles
+\tikzstyle{decision}= [diamond, draw=\maincolor, line width=\mainline,
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{process} = [rectangle, draw=\maincolor, line width=\mainline,
+    text width=5em, text centered, node distance=3cm, rounded corners, minimum height=4em]
+\tikzstyle{terminal}= [rounded rectangle, draw=\maincolor, line width=\mainline,
+    text width=5em, text centered, node distance=3cm, minimum height=3em,
+    inner sep=0pt]
+\tikzstyle{line}    = [draw=\maincolor, line width=\mainline, -latex']
+\tikzstyle{auxline} = [draw=\auxcolor, line width=\mainline, -latex']
+
+\begin{tikzpicture}[node distance=4cm, auto]
+% Place nodes
+\node [terminal] (init)
+	{\uppercase {Begin Program}};
+\node [decision,below of=init] (lessthan)
+	{\uppercase {Is number negative?}};
+\node [process,right of=lessthan] (lessthanprint)
+	{\uppercase {Output "Negative"}};
+\node [decision,below of=lessthan] (greaterthan)
+	{\uppercase {Is number positive?}};
+\node [process,right of=greaterthan] (greaterthanprint)
+	{\uppercase {Output "Positive"}};
+\node [process,below of=greaterthan] (zero)
+	{\uppercase {Otherwise, zero}};
+\node [process,below of=greaterthanprint] (zeroprint)
+	{\uppercase {Output "Zero"}};
+\node [terminal,below of=zero] (end)
+	{\uppercase {End Program}};
+
+% Draw edges
+\path [line] (init) -- (lessthan);
+\path [line,draw=\badcolor] (lessthan) -- node [near start] {False} (greaterthan);
+\path [line,draw=\badcolor] (greaterthan) -- node [near start] {False} (zero);
+\path [line,draw=\goodcolor] (lessthan) -- node [near start] {True} (lessthanprint);
+\path [line,draw=\goodcolor] (greaterthan) -- node [near start] {True} (greaterthanprint);
+\path [line] (zero) -- (zeroprint);
+\path [line] (lessthanprint) -| ++(2cm,0cm) |- (end);
+\path [line] (greaterthanprint) -| ++(2cm,0cm) |- (end);
+\path [line] (zeroprint) |- ++(2cm,0cm) |- (end);
+
+\end{tikzpicture}
+
+\end{document}
