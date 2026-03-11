@@ -1,0 +1,3 @@
+marimo-chem-utils
+rdkit
+useful-rdkit-utils
