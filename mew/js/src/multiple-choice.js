@@ -1,111 +1,54 @@
-/**
- * Multiple Choice Widget
- */
-
 import styles from './styles.css';
 
+function mk(tag, cls, txt) {
+  const el = document.createElement(tag);
+  if (cls) el.className = cls;
+  if (txt !== undefined) el.textContent = txt;
+  return el;
+}
+
 function render({ model, el }) {
-  // Inject CSS
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = styles;
-  el.appendChild(styleSheet);
-  
-  const container = document.createElement('div');
-  container.className = 'mew';
-  
-  const questionEl = document.createElement('div');
-  questionEl.className = 'mew-question';
-  questionEl.textContent = model.get('question');
-  container.appendChild(questionEl);
-  
-  const optionsContainer = document.createElement('div');
-  optionsContainer.className = 'mew-options';
-  
+  const s = mk('style'); s.textContent = styles; el.appendChild(s);
+  const container = mk('div', 'mew');
+  container.appendChild(mk('div', 'mew-question', model.get('question')));
+
+  const opts = mk('div', 'mew-options');
   const options = model.get('options');
-  const correctAnswer = model.get('correct_answer');
-  
-  let selectedIndex = null;
+  const correct = model.get('correct_answer');
   let answered = false;
-  
-  options.forEach((option, index) => {
-    const optionDiv = document.createElement('div');
-    optionDiv.className = 'mew-option';
-    
-    const radio = document.createElement('input');
-    radio.type = 'radio';
-    radio.name = 'answer';
-    radio.value = index;
-    radio.id = `option-${index}`;
-    radio.style.marginRight = '10px';
-    
-    const label = document.createElement('label');
-    label.htmlFor = `option-${index}`;
-    label.textContent = option;
-    label.style.cursor = 'pointer';
-    
-    optionDiv.appendChild(radio);
-    optionDiv.appendChild(label);
-    
-    const handleSelect = () => {
+
+  const feedbackEl = mk('div'); feedbackEl.style.display = 'none';
+  const explanationEl = mk('div'); explanationEl.style.display = 'none';
+
+  options.forEach((text, i) => {
+    const div = mk('div', 'mew-option');
+    const radio = mk('input'); radio.type = 'radio'; radio.name = 'answer'; radio.value = i; radio.id = `opt-${i}`; radio.style.marginRight = '10px';
+    const lbl = mk('label'); lbl.htmlFor = `opt-${i}`; lbl.textContent = text; lbl.style.cursor = 'pointer';
+    div.append(radio, lbl);
+
+    const select = () => {
       if (answered) return;
-      
       radio.checked = true;
-      selectedIndex = index;
       answered = true;
-      
-      // Update all options
-      const allOptions = optionsContainer.children;
-      for (let i = 0; i < allOptions.length; i++) {
-        const opt = allOptions[i];
-        opt.classList.add('mew-answered');
-        
-        if (i === correctAnswer) {
-          opt.classList.add('mew-correct');
-        } else if (i === selectedIndex) {
-          opt.classList.add('mew-incorrect');
-        } else {
-          opt.classList.add('mew-faded');
-        }
-      }
-      
-      // Show feedback
-      const isCorrect = selectedIndex === correctAnswer;
-      feedbackEl.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
-      feedbackEl.className = `mew-feedback ${isCorrect ? 'mew-correct' : 'mew-incorrect'}`;
-      feedbackEl.style.display = 'block';
-      
-      // Show explanation
-      const explanation = model.get('explanation');
-      if (explanation) {
-        explanationEl.textContent = explanation;
-        explanationEl.className = 'mew-explanation';
-        explanationEl.style.display = 'block';
-      }
-      
-      model.set('value', {
-        selected: selectedIndex,
-        correct: isCorrect,
-        answered: true
+      [...opts.children].forEach((opt, j) => {
+        opt.classList.add('mew-answered', j === correct ? 'mew-correct' : j === i ? 'mew-incorrect' : 'mew-faded');
       });
+      const ok = i === correct;
+      feedbackEl.textContent = ok ? '✓ Correct!' : '✗ Incorrect';
+      feedbackEl.className = `mew-feedback ${ok ? 'mew-correct' : 'mew-incorrect'}`;
+      feedbackEl.style.display = 'block';
+      const expl = model.get('explanation');
+      if (expl) { explanationEl.textContent = expl; explanationEl.className = 'mew-explanation'; explanationEl.style.display = 'block'; }
+      model.set('value', { selected: i, correct: ok, answered: true });
       model.save_changes();
     };
-    
-    optionDiv.addEventListener('click', handleSelect);
-    radio.addEventListener('change', handleSelect);
-    
-    optionsContainer.appendChild(optionDiv);
+
+    div.addEventListener('click', select);
+    radio.addEventListener('change', select);
+    opts.appendChild(div);
   });
-  
-  container.appendChild(optionsContainer);
-  
-  const feedbackEl = document.createElement('div');
-  feedbackEl.style.display = 'none';
-  container.appendChild(feedbackEl);
-  
-  const explanationEl = document.createElement('div');
-  explanationEl.style.display = 'none';
-  container.appendChild(explanationEl);
-  
+
+  container.append(opts, feedbackEl, explanationEl);
   el.appendChild(container);
 }
 

@@ -21,13 +21,14 @@ def _():
 @app.cell
 def _():
     from mew import (
+        FlashcardWidget,
         LabelingWidget,
         MatchingWidget,
         MultipleChoiceWidget,
         OrderingWidget,
     )
 
-    return LabelingWidget, MatchingWidget, MultipleChoiceWidget, OrderingWidget
+    return FlashcardWidget, LabelingWidget, MatchingWidget, MultipleChoiceWidget, OrderingWidget
 
 
 @app.cell
@@ -36,6 +37,68 @@ def _(mo):
     # Educational Widgets Demo
 
     This notebook demonstrates interactive self-test questions.
+    """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md("""
+    ## Flashcard Deck
+    """)
+    return
+
+
+@app.cell
+def _(FlashcardWidget, mo):
+    flashcard_deck = mo.ui.anywidget(FlashcardWidget(
+        question="Python Concepts — rate yourself on each card:",
+        cards=[
+            {
+                "front": "What does a list comprehension look like?",
+                "back": "[expr for item in iterable if condition] — e.g., [x**2 for x in range(10) if x % 2 == 0]",
+            },
+            {
+                "front": "What is the difference between a list and a tuple?",
+                "back": "Lists are mutable (can be changed after creation); tuples are immutable (cannot be changed).",
+            },
+            {
+                "front": "What does the `*args` parameter do in a function definition?",
+                "back": "It collects any number of positional arguments into a tuple named `args`.",
+            },
+            {
+                "front": "What is a Python generator?",
+                "back": "A function that uses `yield` to produce values one at a time, pausing between each, without building the full sequence in memory.",
+            },
+            {
+                "front": "What does `if __name__ == '__main__':` do?",
+                "back": "It runs the indented code only when the file is executed directly, not when it is imported as a module.",
+            },
+            {
+                "front": "What is the difference between `is` and `==` in Python?",
+                "back": "`==` tests value equality; `is` tests identity (whether two names refer to the exact same object in memory).",
+            },
+        ],
+        shuffle=True,
+    ))
+    flashcard_deck
+    return (flashcard_deck,)
+
+
+@app.cell
+def _(flashcard_deck, mo):
+    _val = flashcard_deck.value.get("value") or {}
+    _results = _val.get("results", {})
+    _complete = _val.get("complete", False)
+    _counts = {"got_it": 0, "almost": 0, "no": 0}
+    for _r in _results.values():
+        _counts[_r["rating"]] = _counts.get(_r["rating"], 0) + 1
+    mo.md(f"""
+    **Progress:** {len(_results)} card(s) rated —
+    ✓ Got it: {_counts['got_it']} &nbsp;
+    ~ Almost: {_counts['almost']} &nbsp;
+    ✗ No: {_counts['no']}
+    {"&nbsp; 🎉 Deck complete!" if _complete else ""}
     """)
     return
 
@@ -190,10 +253,17 @@ def _(mo):
 
 
 @app.cell
-def _(matching_question, multiple_choice_question, mo, ordering_question):
+def _(flashcard_deck, matching_question, multiple_choice_question, mo, ordering_question):
     def calculate_score():
         score = 0
         total = 0
+
+        _fc_val = flashcard_deck.value.get('value') or {}
+        _fc_results = _fc_val.get('results', {})
+        if _fc_results:
+            total += 1
+            if _fc_val.get('complete'):
+                score += 1
 
         _matching_val = matching_question.value.get('value')
         if _matching_val and _matching_val.get('score') is not None:

@@ -8,6 +8,7 @@ const isWatch = process.argv.includes('--watch');
 
 const buildConfig = {
   entryPoints: [
+    'src/flashcard.js',
     'src/labeling.js',
     'src/matching.js',
     'src/multiple-choice.js',
