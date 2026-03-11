@@ -21,6 +21,7 @@ def _():
 @app.cell
 def _():
     from mew import (
+        ConceptMapWidget,
         FlashcardWidget,
         LabelingWidget,
         MatchingWidget,
@@ -28,7 +29,7 @@ def _():
         OrderingWidget,
     )
 
-    return FlashcardWidget, LabelingWidget, MatchingWidget, MultipleChoiceWidget, OrderingWidget
+    return ConceptMapWidget, FlashcardWidget, LabelingWidget, MatchingWidget, MultipleChoiceWidget, OrderingWidget
 
 
 @app.cell
@@ -87,19 +88,65 @@ def _(FlashcardWidget, mo):
 
 @app.cell
 def _(flashcard_deck, mo):
-    _val = flashcard_deck.value.get("value") or {}
-    _results = _val.get("results", {})
-    _complete = _val.get("complete", False)
-    _counts = {"got_it": 0, "almost": 0, "no": 0}
-    for _r in _results.values():
-        _counts[_r["rating"]] = _counts.get(_r["rating"], 0) + 1
+    def flashcard_progress(widget):
+        val = widget.value.get("value") or {}
+        results = val.get("results", {})
+        counts = {"got_it": 0, "almost": 0, "no": 0}
+        for r in results.values():
+            counts[r["rating"]] = counts.get(r["rating"], 0) + 1
+        return len(results), counts, val.get("complete", False)
+
+    _rated, _counts, _complete = flashcard_progress(flashcard_deck)
     mo.md(f"""
-    **Progress:** {len(_results)} card(s) rated —
+    **Progress:** {_rated} card(s) rated —
     ✓ Got it: {_counts['got_it']} &nbsp;
     ~ Almost: {_counts['almost']} &nbsp;
     ✗ No: {_counts['no']}
     {"&nbsp; 🎉 Deck complete!" if _complete else ""}
     """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md("""
+    ## Concept Map
+    """)
+    return
+
+
+@app.cell
+def _(ConceptMapWidget, mo):
+    concept_map = mo.ui.anywidget(ConceptMapWidget(
+        question="Map the relationships between these Python concepts:",
+        concepts=["function", "parameter", "argument", "return value", "call site"],
+        terms=["defines", "accepts", "supplies", "produces", "invokes"],
+        correct_edges=[
+            {"from": "function",   "to": "parameter",    "label": "accepts"},
+            {"from": "function",   "to": "return value",  "label": "produces"},
+            {"from": "call site",  "to": "argument",      "label": "supplies"},
+            {"from": "argument",   "to": "parameter",     "label": "defines"},
+            {"from": "call site",  "to": "function",      "label": "invokes"},
+        ],
+    ))
+    concept_map
+    return (concept_map,)
+
+
+@app.cell
+def _(concept_map, mo):
+    def concept_map_msg(widget):
+        val = widget.value.get("value") or {}
+        score = val.get("score")
+        total = val.get("total", 5)
+        if score is None:
+            return "Draw connections between concepts to see your score."
+        msg = f"**{score}/{total}** correct connection{'s' if total != 1 else ''}"
+        if val.get("correct"):
+            msg += " — complete!"
+        return msg
+
+    mo.md(concept_map_msg(concept_map))
     return
 
 
@@ -253,36 +300,28 @@ def _(mo):
 
 
 @app.cell
-def _(flashcard_deck, matching_question, multiple_choice_question, mo, ordering_question):
+def _(concept_map, flashcard_deck, matching_question, multiple_choice_question, mo, ordering_question):
+    def widget_val(widget):
+        return widget.value.get('value') or {}
+
     def calculate_score():
         score = 0
         total = 0
-
-        _fc_val = flashcard_deck.value.get('value') or {}
-        _fc_results = _fc_val.get('results', {})
-        if _fc_results:
+        for val, answered_key, correct_key in [
+            (widget_val(concept_map),            'score',    'correct'),
+            (widget_val(matching_question),      'score',    'correct'),
+            (widget_val(multiple_choice_question),'answered', 'correct'),
+            (widget_val(ordering_question),      'order',    'correct'),
+        ]:
+            if val.get(answered_key) is not None and val.get(answered_key) is not False:
+                total += 1
+                if val.get(correct_key):
+                    score += 1
+        fc = widget_val(flashcard_deck)
+        if fc.get('results'):
             total += 1
-            if _fc_val.get('complete'):
+            if fc.get('complete'):
                 score += 1
-
-        _matching_val = matching_question.value.get('value')
-        if _matching_val and _matching_val.get('score') is not None:
-            total += 1
-            if _matching_val.get('correct'):
-                score += 1
-
-        _mc_val = multiple_choice_question.value.get('value')
-        if _mc_val and _mc_val.get('answered'):
-            total += 1
-            if _mc_val.get('correct'):
-                score += 1
-
-        _order_val = ordering_question.value.get('value')
-        if _order_val and _order_val.get('order'):
-            total += 1
-            if _order_val.get('correct'):
-                score += 1
-
         return score, total
 
     score, total = calculate_score()

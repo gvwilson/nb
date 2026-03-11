@@ -79,8 +79,21 @@ artifacts = [
     "mew/js/dist/*.js.map",
 ]
 
-# For sdist, explicitly include these
 [tool.hatch.build.targets.sdist]
+only-include = [
+    "mew",
+    "README.md",
+]
+exclude = [
+    ".gitignore",
+    "mew/tests",
+    "mew/mew_examples.py",
+    "mew/js/src",
+    "mew/js/build.js",
+    "mew/js/package.json",
+    "mew/js/package-lock.json",
+    "mew/js/node_modules",
+]
 artifacts = [
     "mew/js/dist/*.js",
     "mew/js/dist/*.js.map",

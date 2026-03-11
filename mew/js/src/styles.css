@@ -107,3 +107,33 @@
 .mew-rating-btns { display: flex; gap: 8px; margin-bottom: 12px; }
 .mew-progress { height: 6px; background: var(--muted); border-radius: 4px; margin-bottom: 10px; }
 .mew-progress-fill { height: 100%; background: var(--primary); border-radius: 4px; transition: width .3s; }
+
+.mew-cm-workspace {
+  position: relative; height: 360px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  margin-bottom: 12px; overflow: hidden; background: var(--muted);
+}
+.mew-cm-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible; }
+.mew-cm-node {
+  position: absolute; transform: translate(-50%, -50%);
+  padding: 8px 14px; background: var(--card); border: 2px solid var(--primary);
+  border-radius: var(--radius); cursor: move; user-select: none;
+  font-weight: 500; z-index: 1; white-space: nowrap;
+}
+.mew-cm-node.mew-cm-pending { box-shadow: 0 0 0 3px var(--primary); background: var(--accent); }
+.mew-cm-terms { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.mew-cm-term {
+  padding: 5px 14px; border: 2px solid var(--border); border-radius: 20px;
+  background: var(--muted); cursor: pointer; font: inherit; font-size: 0.9em; transition: all .15s;
+}
+.mew-cm-term:hover:not(:disabled) { border-color: var(--primary); background: var(--accent); }
+.mew-cm-term.mew-cm-term-selected { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+.mew-cm-term:disabled { opacity: 0.45; cursor: not-allowed; }
+.mew-cm-edge-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.mew-cm-edge-row {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 8px; background: var(--muted); border-radius: var(--radius); font-size: 0.9em;
+}
+.mew-cm-edge-label { padding: 2px 8px; background: var(--accent); border-radius: 10px; font-size: 0.85em; font-weight: 500; }
+.mew-cm-edge-remove { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--muted-foreground); padding: 2px 4px; border-radius: 4px; }
+.mew-cm-edge-remove:hover { color: #dc3545; background: #f8d7da; }
