@@ -138,15 +138,9 @@ def _():
         AME2016Z.append(mydata[_i][2])
         AME2016A.append(mydata[_i][3])
         AME2016B.append(mydata[_i][4])
+
+    mo.md(f"""## Current inventory of measured nuclear binding energies contains {len(mydata)} entries""")
     return AME2016A, AME2016B, AME2016N, AME2016Z, mydata
-
-
-@app.cell(hide_code=True)
-def _(mydata):
-    mo.md(f"""
-    ## Current inventory of measured nuclear binding energies contains {len(mydata)} entries
-    """)
-    return
 
 
 @app.cell
@@ -157,12 +151,7 @@ def _(AME2016A, AME2016B):
     plt.axis([-20, 270, -200, 2000])
     plt.xlabel('Mass number A')
     plt.ylabel('Binding energy (MeV)')
-    None
-    return (binding_energy_vs_mass_number,)
 
-
-@app.cell(hide_code=True)
-def _(binding_energy_vs_mass_number):
     mo.md(f"""
     ## Binding Energy
 
@@ -190,12 +179,7 @@ def _(AME2016A, AME2016B, mydata):
     plt.ylabel('Binding energy (MeV)')
     plt.text(50, 1000, 'Exp', color='red')
     plt.text(100, 500, 'Linear model', color='blue')
-    None
-    return (compare_exp_data_to_linear_model,)
 
-
-@app.cell(hide_code=True)
-def _(compare_exp_data_to_linear_model):
     mo.md(f"""
     ## Binding Energy vs. Linear Model
 
@@ -275,18 +259,13 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     plt.ylabel('Binding energy (MeV)')
     plt.text(50, 1000, 'Exp', color='red')
     plt.text(100, 500, 'Liquid Drop', color='blue')
-    None
-    return BindingLD_1, aC, aI, aP, aS, aV_1, liquid_drop_binding_energies
 
-
-@app.cell(hide_code=True)
-def _(liquid_drop_binding_energies):
     mo.md(f"""
     ## Liquid Drop Binding Energies
 
     {mo.as_html(liquid_drop_binding_energies)}
     """)
-    return
+    return BindingLD_1, aC, aI, aP, aS, aV_1
 
 
 @app.cell
@@ -319,12 +298,7 @@ def _(aC, aI, aP, aS, aV_1):
     pie_chart, _ax1 = plt.subplots()
     _ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     _ax1.axis('equal')
-    None
-    return (pie_chart,)
 
-
-@app.cell
-def _(pie_chart):
     mo.md(f"""
     ## Liquid Drop Binding Energies as Pie Chart
 
@@ -363,12 +337,7 @@ def _(AME2016A, AME2016B, AME2016Z, BindingLD_1, mydata):
     plt.axis([45, 57, 920, 1150])
     plt.xlabel('Atomic number Z')
     plt.ylabel('Binding energy (MeV)')
-    None
-    return (symmetry_energy,)
 
-
-@app.cell
-def _(symmetry_energy):
     mo.md(f"""
     ## Symmetry Energy
 
@@ -428,12 +397,7 @@ def _(AME2016B, AME2016N, AME2016Z, BindingLD_1, mydata):
     plt.axis([76, 105, -2, 2])
     plt.xlabel('Neutron number N')
     plt.ylabel('Odd-even mass staggering (MeV)')
-    None
-    return (staggering,)
 
-
-@app.cell
-def _(staggering):
     mo.md(f"""
     ## Odd-Even Staggering
 
@@ -491,12 +455,7 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     plt.xlabel('Mass number A')
     plt.xlabel('Atomic number Z')
     plt.ylabel('Residual (MeV)')
-    None
-    return RMSdeviation_1, rms_1_figure
 
-
-@app.cell
-def _(RMSdeviation_1, rms_1_figure):
     mo.md(f"""
     ## RMS deviation={RMSdeviation_1}
 
@@ -561,12 +520,7 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     plt.xlabel('Mass number A')
     plt.xlabel('Neutron number N')
     plt.ylabel('Residual (MeV)')
-    None
-    return RMSdeviation_2, rms_2_figure
 
-
-@app.cell
-def _(RMSdeviation_2, rms_2_figure):
     mo.md(f"""
     ## RMS deviation={RMSdeviation_2}
 
@@ -625,15 +579,9 @@ def _():
 
     for _i in range(0, len(mydata2)):
         UNEDF0B[_i] = -UNEDF0B[_i]
+
+    mo.md(f"## Database of calculated UNEDEF0 even-even nuclei {len(mydata2)} entries")
     return UNEDF0B, UNEDF0N, UNEDF0Z, mydata2
-
-
-@app.cell(hide_code=True)
-def _(mydata2):
-    mo.md(f"""
-    ## Database of calculated UNEDEF0 even-even nuclei {len(mydata2)} entries
-    """)
-    return
 
 
 @app.cell
@@ -688,12 +636,6 @@ def _(
     plt.xlabel('Neutron number N')
     plt.ylabel('Residual (MeV)')
 
-    None
-    return RMSdeviation_3, residual_1_figure, residual_2_figure
-
-
-@app.cell
-def _(RMSdeviation_3, residual_1_figure, residual_2_figure):
     mo.md(f"""
     ## RMS deviation={RMSdeviation_3}
 
