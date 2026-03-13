@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.20.4"
-app = marimo.App()
+app = marimo.App(layout_file="layouts/notebook.slides.json")
 
 with app.setup:
     # Import modules
@@ -37,15 +37,19 @@ def _():
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _():
-    mo.image(src="Checkin.250211.png", alt="checkin QR code")
+    mo.md(r"""
+    ![checkin QR code](/public/Checkin.250211.png)
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _():
-    mo.image(src="Feedback_Directed learning.JD.png", alt="feedback directed learning")
+    mo.md(r"""
+    ![feedback directed learning](/public/feedback_directed_learning.png)
+    """)
     return
 
 
@@ -62,26 +66,19 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Experimental nuclear masses
+    ## Experimental nuclear masses
 
     $$M(A,Z) = Z (m_P + m_e) + (A-Z) m_N - E_{atomic} (A,Z) - E_B(A,Z)$$
 
-    $M(A,Z)$ is the mass of the neutral atom
-
-    $Z$ is the atomic number
-
-    $A$ is the mass number; the number of neutrons is thus $N=A-Z$
-
-    $m_P$ is the mass of a proton, $m_e$ is the mass of an electron, $m_N$ is the mass of a neutron
-
-    $E_{atomic} (A,Z)$ is the binding energy of all electrons in the neutral atom
-
-    $E_B(A,Z)$ is the nuclear binding energy
-
-    $E=mc^2$, and $c=1$
+    - $M(A,Z)$ is the mass of the neutral atom
+    - $Z$ is the atomic number
+    - $A$ is the mass number; the number of neutrons is thus $N=A-Z$
+    - $m_P$ is the mass of a proton, $m_e$ is the mass of an electron, $m_N$ is the mass of a neutron
+    - $E_{atomic} (A,Z)$ is the binding energy of all electrons in the neutral atom
+    - $E_B(A,Z)$ is the nuclear binding energy
+    - $E=mc^2$, and $c=1$
 
     We express all energies and masses in mega-electronovolts (MeV), or eV, keV, or meV.
-
     1 MeV is the energy that an elementary charge $e$ gains in en electrostatic potential of one million volts
     """)
     return
@@ -90,16 +87,12 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # The Segré chart ([Table of Nuclides](https://atom.kaeri.re.kr/nuchart/))
+    ## The Segré chart ([Table of Nuclides](https://atom.kaeri.re.kr/nuchart/))
 
     J.Erler et al., [Nature 486, 509 (2012)](https://www.nature.com/articles/nature11188)
+
+    ![Segre chart](/public/Segre.chart.png)
     """)
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.image(src="Segre.chart.png", alt="Segre chart")
     return
 
 
@@ -109,27 +102,19 @@ def _():
     ## Download the experimental mass table
 
     [The 2020 Atomic Mass Evaluation](https://www-nds.iaea.org/amdc/ame2020/massround.mas20.txt)
+
+    ![Atomic Mass Evaluation data](/public/AME2016.png)
     """)
-    return
-
-
-@app.cell
-def _():
-    mo.image("AME2016.png", alt="Atomic Mass Evaluation data")
     return
 
 
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    In Python-friendly format
+    ## In Python-friendly format
+
+    ![atomic masses in columnar format](/public/mass16round-sum.png)
     """)
-    return
-
-
-@app.cell
-def _():
-    mo.image("mass16round-sum.png", alt="atomic masses in columnar format")
     return
 
 
@@ -146,7 +131,6 @@ def _():
     # Use NumPy (np) to load the data, then extract values from each row.
     # Note that we use `_i` as a loop variable instead of just `i` because
     # we want to be able to use the same variable in other cells.
-    # FIXME: extract columns using NumPy instead of a loop?
     mydata = np.loadtxt('mass16round-sum.txt')
     for _i in range(0, len(mydata)):
         AME2016k.append(mydata[_i][0])  # Remember, Python starts counting at 0
@@ -154,17 +138,13 @@ def _():
         AME2016Z.append(mydata[_i][2])
         AME2016A.append(mydata[_i][3])
         AME2016B.append(mydata[_i][4])
-
-    # By default, Marimo shows the value of the last expression in a cell, so we don't
-    # need an explicit call to print().
-    len(mydata)
     return AME2016A, AME2016B, AME2016N, AME2016Z, mydata
 
 
 @app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    ## Current inventory of measured nuclear binding energies contains 2453 entries
+def _(mydata):
+    mo.md(f"""
+    ## Current inventory of measured nuclear binding energies contains {len(mydata)} entries
     """)
     return
 
@@ -172,11 +152,22 @@ def _():
 @app.cell
 def _(AME2016A, AME2016B):
     # Plot binding energy against mass number.
+    binding_energy_vs_mass_number = plt.figure()
     plt.plot(AME2016A, AME2016B, 'r.')
     plt.axis([-20, 270, -200, 2000])
     plt.xlabel('Mass number A')
     plt.ylabel('Binding energy (MeV)')
-    plt.show()
+    None
+    return (binding_energy_vs_mass_number,)
+
+
+@app.cell(hide_code=True)
+def _(binding_energy_vs_mass_number):
+    mo.md(f"""
+    ## Binding Energy
+
+    {mo.as_html(binding_energy_vs_mass_number)}
+    """)
     return
 
 
@@ -191,6 +182,7 @@ def _(AME2016A, AME2016B, mydata):
         _A = AME2016A[_i]
         _e = aV * _A
         BindingLD.append(_e)
+    compare_exp_data_to_linear_model = plt.figure()
     plt.plot(AME2016A, BindingLD, '.', color='blue')
     plt.plot(AME2016A, AME2016B, '.', color='red')
     plt.axis([-20, 270, -200, 2000])
@@ -198,7 +190,17 @@ def _(AME2016A, AME2016B, mydata):
     plt.ylabel('Binding energy (MeV)')
     plt.text(50, 1000, 'Exp', color='red')
     plt.text(100, 500, 'Linear model', color='blue')
-    plt.show()
+    None
+    return (compare_exp_data_to_linear_model,)
+
+
+@app.cell(hide_code=True)
+def _(compare_exp_data_to_linear_model):
+    mo.md(f"""
+    ## Binding Energy vs. Linear Model
+
+    {mo.as_html(compare_exp_data_to_linear_model)}
+    """)
     return
 
 
@@ -206,13 +208,9 @@ def _(AME2016A, AME2016B, mydata):
 def _():
     mo.md(r"""
     ## The origin of nuclear binding [arxiv.nucl-th/0301069](https://arxiv.org/abs/nucl-th/0301069), J.H. Rose et al. [PRL 53 (1984) 344](https://doi-org.libproxy.york.ac.uk/10.1103/PhysRevLett.53.344)
+
+    ![nuclear binding illustration](/public/Lancaster.150825-09.slide41.png)
     """)
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.image(src="Lancaster.150825-09.slide41.png", alt="nuclear binding illustration")
     return
 
 
@@ -268,6 +266,8 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
         if _N % 2 == 1 and _Z % 2 == 1:
             _e = _e - aP * _A ** (-threefourth)
         BindingLD_1.append(_e)
+
+    liquid_drop_binding_energies = plt.figure()
     plt.plot(AME2016A, BindingLD_1, '.', color='blue')
     plt.plot(AME2016A, AME2016B, '.', color='red')
     plt.axis([-20, 270, -200, 2000])
@@ -275,8 +275,18 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     plt.ylabel('Binding energy (MeV)')
     plt.text(50, 1000, 'Exp', color='red')
     plt.text(100, 500, 'Liquid Drop', color='blue')
-    plt.show()
-    return BindingLD_1, aC, aI, aP, aS, aV_1
+    None
+    return BindingLD_1, aC, aI, aP, aS, aV_1, liquid_drop_binding_energies
+
+
+@app.cell(hide_code=True)
+def _(liquid_drop_binding_energies):
+    mo.md(f"""
+    ## Liquid Drop Binding Energies
+
+    {mo.as_html(liquid_drop_binding_energies)}
+    """)
+    return
 
 
 @app.cell
@@ -306,17 +316,27 @@ def _(aC, aI, aP, aS, aV_1):
     sizes = [eV, eS, eC, eI]
     explode = (0, 0, 0, 0)
 
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
-    ax1.axis('equal')
-    plt.show()
+    pie_chart, _ax1 = plt.subplots()
+    _ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    _ax1.axis('equal')
+    None
+    return (pie_chart,)
+
+
+@app.cell
+def _(pie_chart):
+    mo.md(f"""
+    ## Liquid Drop Binding Energies as Pie Chart
+
+    {mo.as_html(pie_chart)}
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # The Symmetry Energy
+    ## The Symmetry Energy
 
     Let us have a look at the chain of isobars (nuclei having the same mass number A), which have the same volume and surface energies.
     """)
@@ -337,19 +357,30 @@ def _(AME2016A, AME2016B, AME2016Z, BindingLD_1, mydata):
             AME2016Z120.append(AME2016Z[_i])
             LDB120.append(BindingLD_1[_i])
 
+    symmetry_energy = plt.figure()
     plt.plot(AME2016Z120, LDB120, '.', color='blue')
     plt.plot(AME2016Z120, AME2016B120, 'o', color='red')
     plt.axis([45, 57, 920, 1150])
     plt.xlabel('Atomic number Z')
     plt.ylabel('Binding energy (MeV)')
-    plt.show()
+    None
+    return (symmetry_energy,)
+
+
+@app.cell
+def _(symmetry_energy):
+    mo.md(f"""
+    ## Symmetry Energy
+
+    {mo.as_html(symmetry_energy)}
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # The Pairing Energy
+    ## The Pairing Energy
 
     Odd-even mass staggering.
 
@@ -391,19 +422,30 @@ def _(AME2016B, AME2016N, AME2016Z, BindingLD_1, mydata):
         LDS68.append(a0 - (am + ap) / 2)
         AME2016N68.append(AME2016n68[_i])
 
+    staggering = plt.figure()
     plt.plot(AME2016N68, LDS68, '-', color='blue')
     plt.plot(AME2016N68, AME2016S68, '-', color='red')
     plt.axis([76, 105, -2, 2])
     plt.xlabel('Neutron number N')
     plt.ylabel('Odd-even mass staggering (MeV)')
-    plt.show()
+    None
+    return (staggering,)
+
+
+@app.cell
+def _(staggering):
+    mo.md(f"""
+    ## Odd-Even Staggering
+
+    {mo.as_html(staggering)}
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Residuals of the liquid-drop mass formula
+    ## Residuals of the liquid-drop mass formula
 
     Differences between theory (model) and experiment
     """)
@@ -424,7 +466,7 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
 
     # Generating the liquid-drop binding energies
 
-    _RMSdeviation = 0
+    RMSdeviation_1 = 0
     _ResidualLD = []
     for _i in range(0, len(mydata)):
         _A = AME2016A[_i]
@@ -436,12 +478,11 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
         if _N % 2 == 1 and _Z % 2 == 1:
             _e = _e - aP_1 * _A ** (-threefourth)
         _ResidualLD.append(_e - AME2016B[_i])
-        _RMSdeviation = _RMSdeviation + _ResidualLD[_i] ** 2
+        RMSdeviation_1 = RMSdeviation_1 + _ResidualLD[_i] ** 2
 
-    _RMSdeviation = math.sqrt(_RMSdeviation / len(mydata))
+    RMSdeviation_1 = math.sqrt(RMSdeviation_1 / len(mydata))
 
-    print('RMS deviation=', _RMSdeviation) # explicit message
-
+    rms_1_figure = plt.figure()
     plt.plot(AME2016Z, _ResidualLD, '.', color='green')
     plt.axis([-20, 270, -100, 50])
     plt.axis([-20, 160, -100, 50])
@@ -450,14 +491,24 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     plt.xlabel('Mass number A')
     plt.xlabel('Atomic number Z')
     plt.ylabel('Residual (MeV)')
-    plt.show()
+    None
+    return RMSdeviation_1, rms_1_figure
+
+
+@app.cell
+def _(RMSdeviation_1, rms_1_figure):
+    mo.md(f"""
+    ## RMS deviation={RMSdeviation_1}
+
+    {mo.as_html(rms_1_figure)}
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # 2020 parameterization of the liquid-drop mass formula
+    ## 2020 parameterization of the liquid-drop mass formula
 
     published in:
 
@@ -479,7 +530,6 @@ def _():
 @app.cell
 def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     # Generating the liquid-drop parameters
-
     # values given in the recent paper, Benzaid et al. (2020)
 
     aV_3 = 14.64
@@ -489,8 +539,7 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
     aP_2 = 11.54
 
     # Generating the liquid-drop binding energies
-
-    _RMSdeviation = 0
+    RMSdeviation_2 = 0
     _ResidualLD = []
     for _i in range(0, len(mydata)):
         _A = AME2016A[_i]
@@ -502,16 +551,27 @@ def _(AME2016A, AME2016B, AME2016N, AME2016Z, mydata):
         if _N % 2 == 1 and _Z % 2 == 1:
             _e = _e - aP_2 * _A ** (-onehalf)
         _ResidualLD.append(_e - AME2016B[_i])
-        _RMSdeviation = _RMSdeviation + _ResidualLD[_i] ** 2
-    _RMSdeviation = math.sqrt(_RMSdeviation / len(mydata))
-    print('RMS deviation=', _RMSdeviation)
+        RMSdeviation_2 = RMSdeviation_2 + _ResidualLD[_i] ** 2
+    RMSdeviation_2 = math.sqrt(RMSdeviation_2 / len(mydata))
+
+    rms_2_figure = plt.figure()
     plt.plot(AME2016N, _ResidualLD, '.', color='green')
     plt.axis([-20, 270, -25, 15])
     plt.axis([-20, 160, -25, 15])
     plt.xlabel('Mass number A')
     plt.xlabel('Neutron number N')
     plt.ylabel('Residual (MeV)')
-    plt.show()
+    None
+    return RMSdeviation_2, rms_2_figure
+
+
+@app.cell
+def _(RMSdeviation_2, rms_2_figure):
+    mo.md(f"""
+    ## RMS deviation={RMSdeviation_2}
+
+    {mo.as_html(rms_2_figure)}
+    """)
     return
 
 
@@ -536,11 +596,11 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Mass table based on the UNEDF0 Skyrme density functional
+    ## Mass table based on the UNEDF0 Skyrme density functional
 
     M. Kortelainen et al., [Phys. Rev. C 82, 024313 (2010)](https://journals.aps.org/prc/abstract/10.1103/PhysRevC.82.024313)
 
-    ## Download the mass table
+    ### Download the mass table
 
     [Skyrme UNEDF0 even-even nuclei](http://massexplorer.frib.msu.edu/content/DFTMassTables.html)
     """)
@@ -565,15 +625,13 @@ def _():
 
     for _i in range(0, len(mydata2)):
         UNEDF0B[_i] = -UNEDF0B[_i]
-
-    len(mydata2)
     return UNEDF0B, UNEDF0N, UNEDF0Z, mydata2
 
 
 @app.cell(hide_code=True)
-def _():
-    mo.md(r"""
-    ## Database of calculated UNEDEF0 even-even nuclei 2243 entries
+def _(mydata2):
+    mo.md(f"""
+    ## Database of calculated UNEDEF0 even-even nuclei {len(mydata2)} entries
     """)
     return
 
@@ -608,20 +666,20 @@ def _(
                 BindingUN.append(UNEDF0B[j])
                 BindingAM.append(AME2016B[_i])
 
-    _RMSdeviation = 0
+    RMSdeviation_3 = 0
     for _i in range(0, len(ResidualUN)):
-        _RMSdeviation = _RMSdeviation + ResidualUN[_i] ** 2
-    _RMSdeviation = math.sqrt(_RMSdeviation / len(ResidualUN))
+        RMSdeviation_3 = RMSdeviation_3 + ResidualUN[_i] ** 2
+    RMSdeviation_3 = math.sqrt(RMSdeviation_3 / len(ResidualUN))
 
-    print('RMS deviation=', _RMSdeviation)
-
+    residual_1_figure = plt.figure()
     plt.plot(ResidualN, ResidualUN, '.', color='green')
     plt.axis([-20, 270, -25, 15])
     plt.axis([-20, 160, -25, 15])
     plt.xlabel('Mass number A')
     plt.xlabel('Neutron number N')
     plt.ylabel('Residual (MeV)')
-    plt.show()
+
+    residual_2_figure = plt.figure()
     plt.plot(ResidualN, ResidualUN, '.', color='green')
     plt.axis([-20, 270, -25, 15])
     #plt.xlabel('Atomic number Z')
@@ -629,7 +687,21 @@ def _(
     plt.xlabel('Mass number A')
     plt.xlabel('Neutron number N')
     plt.ylabel('Residual (MeV)')
-    plt.show()
+
+    None
+    return RMSdeviation_3, residual_1_figure, residual_2_figure
+
+
+@app.cell
+def _(RMSdeviation_3, residual_1_figure, residual_2_figure):
+    mo.md(f"""
+    ## RMS deviation={RMSdeviation_3}
+
+    {mo.hstack(
+        [mo.as_html(residual_1_figure),
+        mo.as_html(residual_2_figure)]
+    )}
+    """)
     return
 
 
@@ -641,19 +713,9 @@ def _():
     [arXiv2011.07904](https://arxiv.org/abs/2011.07904)
 
     [The European Physical Journal A volume 57, Article number: 333 (2021) ](https://link.springer.com/article/10.1140/epja/s10050-021-00642-1)
-    """)
-    return
 
+    ![arXiv paper](/public/arXiv2011.07904.png)
 
-@app.cell(hide_code=True)
-def _():
-    mo.image("arXiv2011.07904.png")
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
     RMS error on the 2408 known masses of 661 keV
     """)
     return
@@ -662,22 +724,12 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Modern nuclear Liquid Drop + corrections:
+    ## Modern nuclear Liquid Drop + corrections:
 
     [Atomic Data and Nuclear Data Tables 109–110 (2016) 1–204](http://dx.doi.org/10.1016/j.adt.2015.10.002)
-    """)
-    return
 
+    ![ground state masses paper](/public/AtomicDataandNuclearDataTables109-1.png)
 
-@app.cell
-def _():
-    mo.image("AtomicDataandNuclearDataTables109-1.png")
-    return
-
-
-@app.cell(hide_code=True)
-def _():
-    mo.md(r"""
     The error of the mass model is 559.5 keV for 2149 nuclei
     """)
     return
@@ -686,7 +738,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     mo.md(r"""
-    # Take-home messages
+    ## Take-home messages
 
     Nucleon-nucleon potential has a minimum around 0.9 fm and therefore nuclear matter in equilibrium has a binding energy per particle of about 8 MeV.
 
