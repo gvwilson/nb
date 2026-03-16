@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>turtle</title>
+    <script type="module" crossorigin src="./assets/index-DyRdaW9o.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-TXkS1QI3.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-A78R3nYl.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-d_A4rA-x.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-CP2fAiZX.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-CNBv2dAU.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-CjXriKgk.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-BmOH9agK.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-tjZP3FH6.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-Bs2e3wuf.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CIU0Lack.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-BvP5LBIs.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BnZGcuDh.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-yqLqiq5Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-DygbgNTD.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-DOQlecCr.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-BhMe50aT.js">
+    <link rel="modulepreload" crossorigin href="./assets/_Uint8Array-BGESiCQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseIsEqual-BU8KB_Ip.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-WUlsM6MC.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-awXiPaF0.js">
+    <link rel="modulepreload" crossorigin href="./assets/isArrayLikeObject-BkJc8lDE.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-DnJbrtRQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-CORJ8yYa.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-D2igisxY.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-ImXS-885.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-CMZsNx4R.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-CdR60lKM.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-DnMOyddG.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-D9X9QKiL.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-DZy_SQ_v.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BGkTcW3U.js">
+    <link rel="modulepreload" crossorigin href="./assets/toString-DlRqgfqz.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSlice-39dTX4Wi.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasUnicode-QS_pSfjY.js">
+    <link rel="modulepreload" crossorigin href="./assets/assertNever-Dw9aFN4h.js">
+    <link rel="modulepreload" crossorigin href="./assets/_arrayReduce-BKEr35uH.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-BDXC6oVR.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-BY4jV7Yb.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-CwdqVOYu.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-DRC4SgqY.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-CeYo4YI0.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-BcTiTw8T.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-bMgYkaP2.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DUY6xZX8.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-D89dID68.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CU-Ty5ht.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BjtLy-VA.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-odxAaH5Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dq_iQ08e.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DfBASypd.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-51xFOPFs.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CEQIJ2pn.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-FMMSUPAS.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-DDAiY7kz.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-CPplrWRQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-CVt8hZ5L.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseProperty-DuoFhI7N.js">
+    <link rel="modulepreload" crossorigin href="./assets/toNumber-GB_lFVaq.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-DIo_1hTm.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-D8CkpJG7.js">
+    <link rel="modulepreload" crossorigin href="./assets/toInteger-Cl1doThW.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-B3efE3T2.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-Cmx6WhDY.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-CCtxWKxf.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-DCSoZZhh.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-_z3dkNFy.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-CKhrfxsx.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-CVbqSkT8.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-BJEd-iA7.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-kCmlVJ-5.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-0YTlkh9P.js">
+    <link rel="modulepreload" crossorigin href="./assets/card-WPBELA1S.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-DsNfSYaw.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-BXzvlof-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BTEPE6IB.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-DmqkEXI4.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-BUC67G8E.js">
+    <link rel="modulepreload" crossorigin href="./assets/azure-Ddr1pZpW.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-44Cj1Me-.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-DC7ElCZZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-B1_BdDTF.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-DMA_kIIZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-DsLftN-x.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-BPldEXfy.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-BKV6zi_7.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Cvl9xY6R.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-tdkZNn4k.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-FXVKPW36.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-DVm0BCFt.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-Bfogio62.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-R2OkQKR0.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-DMCkK2TI.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-BCOZVFBt.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-6uJrSKbw.js">
+    <link rel="modulepreload" crossorigin href="./assets/capitalize-irHJCpFh.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-CAR4dOiD.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-B-s-VRHt.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-DeCFDX1B.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-DtQaB9NM.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-n1-FF7zs.js">
+    <link rel="modulepreload" crossorigin href="./assets/ai-model-dropdown-C3Y44M85.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-OkOxlkkM.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-BOmLQIKI.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DK1MWd7f.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-CZV6_g2i.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-D_HRHf_c.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-dVj6GVNE.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-jGxNsOWc.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-CRNJOvqT.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-B59Kn5nL.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-B2Fl6iYU.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-D2jTOQOG.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-B0ZtYqUC.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-6RnnFDPt.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-b9BimK8l.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-ShrwcKIv.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-BdX_Y5NA.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BJDu6jwt.js">
+    <link rel="modulepreload" crossorigin href="./assets/katex-rvFxOCU-.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-B6a5ZAwT.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-DQqqP-WF.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-BTm4CTKr.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-qh-NzTWO.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-T3alJPda.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-C3K3rlAZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DBqDb4Nb.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-D3F4nmET.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-CzBDvj6R.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-8VTEe-0T.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-aq1t6BkR.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-D7FeWASw.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-CmtFqjqu.js">
+    <link rel="modulepreload" crossorigin href="./assets/range-BGa3qZre.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-CeILsq6V.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-BSyDxU0G.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeleteCell-BAfiIxKf.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-B9sHgc9n.js">
+    <link rel="modulepreload" crossorigin href="./assets/process-output-4yip1nZE.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-CObhN-9g.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-Dxmp_Bd_.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-BQUzYly2.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-DVwc11C3.js">
+    <link rel="modulepreload" crossorigin href="./assets/play-D4Tdvkms.js">
+    <link rel="modulepreload" crossorigin href="./assets/add-cell-with-ai--4VOMvH8.js">
+    <link rel="modulepreload" crossorigin href="./assets/isEmpty-9KlyX4nB.js">
+    <link rel="modulepreload" crossorigin href="./assets/bot-message-square-BzawfL5p.js">
+    <link rel="modulepreload" crossorigin href="./assets/chat-display-Co6iGNSx.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-F2DZENgf.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-4zY5Dv0P.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-Be-iRLAY.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-CF9x5raB.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-BQP0K_pZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/toggle-BhEcsHTu.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-BlB0Ba6E.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-sD4fbzpH.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-BEHvSeoM.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-RgA6v8U3.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-aware-panel-D7ygyp92.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-BWK_nLJy.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-BRlAqdmq.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-DgTL09j7.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-DmjbJYSq.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-video-camera-Fa5c_iPb.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-code-D9wtWSiR.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-DFiYrN2w.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-BOzRCrXK.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-B7_NRa34.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-DGtw6Lae.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-eWwLICkT.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-D1hTncYV.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-BhvWC48z.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-DRf51_gT.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-1hBRXVlM.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-Dzwrcr75.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFlatten-C_qcB35v.js">
+    <link rel="modulepreload" crossorigin href="./assets/_basePickBy-36rMhJTw.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-BeVScbIo.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-BMv1Dtd2.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-BG-iMGgV.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-oV8Csj8Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/settings-DD8FJvQ_.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-_LzfhNmX.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DrPzoH7F.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.13%22%0A%23%20dependencies%20%3D%20%5B%0A%23%20%20%20%20%20%22marimo%22%2C%0A%23%20%5D%0A%23%20%2F%2F%2F%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.20.4%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20asyncio%0A%20%20%20%20import%20math%0A%0A%20%20%20%20return%20asyncio%2C%20math%2C%20mo%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%20%F0%9F%90%A2%20Async%20Turtle%20Graphics%20in%20Marimo%0A%0A%20%20%20%20Each%20turtle%20method%20is%20an%20%60async%20def%60%20coroutine%20that%20%60await%60s%20a%20short%0A%20%20%20%20%60asyncio.sleep()%60%20after%20drawing%2C%20yielding%20control%20back%20to%20the%20event%0A%20%20%20%20loop%20so%20Marimo%20can%20push%20the%20updated%20SVG%20to%20the%20browser%20in%20real%20time.%0A%0A%20%20%20%20No%20threads%2C%20no%20locks%20%E2%80%94%20just%20cooperative%20multitasking.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(math)%3A%0A%20%20%20%20WIDTH%2C%20HEIGHT%20%3D%20520%2C%20520%0A%0A%20%20%20%20def%20draw_svg(segments%2C%20tx%3DNone%2C%20ty%3DNone%2C%20tangle%3D0)%3A%0A%20%20%20%20%20%20%20%20lines%20%3D%20%22%22%0A%20%20%20%20%20%20%20%20for%20(x1%2C%20y1)%2C%20(x2%2C%20y2)%2C%20color%20in%20segments%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20lines%20%2B%3D%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f'%3Cline%20x1%3D%22%7Bx1%3A.1f%7D%22%20y1%3D%22%7By1%3A.1f%7D%22%20'%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f'x2%3D%22%7Bx2%3A.1f%7D%22%20y2%3D%22%7By2%3A.1f%7D%22%20'%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f'stroke%3D%22%7Bcolor%7D%22%20stroke-width%3D%221.8%22%20'%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f'stroke-linecap%3D%22round%22%2F%3E'%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20marker%20%3D%20%22%22%0A%20%20%20%20%20%20%20%20if%20tx%20is%20not%20None%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%20math.radians(tangle)%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Equilateral%20triangle%3A%20three%20vertices%20equally%20spaced%20at%20120%C2%B0%20(2%CF%80%2F3%20rad)%0A%20%20%20%20%20%20%20%20%20%20%20%20TURTLE_RADIUS%20%3D%209%0A%20%20%20%20%20%20%20%20%20%20%20%20pts%20%3D%20%22%20%22.join(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%7Btx%20%2B%20TURTLE_RADIUS*math.cos(r%2Ba)%3A.1f%7D%2C%7Bty%20%2B%20TURTLE_RADIUS*math.sin(r%2Ba)%3A.1f%7D%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20for%20a%20in%20%5B0%2C%202*math.pi%2F3%2C%20-2*math.pi%2F3%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20marker%20%3D%20f'%3Cpolygon%20points%3D%22%7Bpts%7D%22%20fill%3D%22%2300ff88%22%20opacity%3D%220.9%22%2F%3E'%0A%20%20%20%20%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20f'%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22%7BWIDTH%7D%22%20height%3D%22%7BHEIGHT%7D%22%20'%0A%20%20%20%20%20%20%20%20%20%20%20%20f'style%3D%22background%3A%231a1a2e%3Bborder-radius%3A8px%3Bdisplay%3Ablock%22%3E'%0A%20%20%20%20%20%20%20%20%20%20%20%20f'%7Blines%7D%7Bmarker%7D%3C%2Fsvg%3E'%0A%20%20%20%20%20%20%20%20)%0A%0A%0A%20%20%20%20return%20HEIGHT%2C%20WIDTH%2C%20draw_svg%0A%0A%0A%40app.cell%0Adef%20_(HEIGHT%2C%20WIDTH%2C%20asyncio%2C%20draw_svg%2C%20math%2C%20mo)%3A%0A%20%20%20%20class%20AsyncTurtle%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20Each%20movement%20method%20is%20a%20coroutine.%20%20Callers%20%60await%60%20it%2C%20so%20the%0A%20%20%20%20%20%20%20%20event%20loop%20gets%20a%20chance%20to%20flush%20the%20updated%20SVG%20to%20the%20browser%0A%20%20%20%20%20%20%20%20after%20every%20single%20line%20segment%20%E2%80%94%20no%20threads%20required.%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20PALETTE%20%3D%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%23e63946%22%2C%20%22%23f4a261%22%2C%20%22%232ec4b6%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%23a8dadc%22%2C%20%22%23e9c46a%22%2C%20%22%238ecae6%22%2C%20%22%23b5e48c%22%2C%0A%20%20%20%20%20%20%20%20%5D%0A%0A%20%20%20%20%20%20%20%20def%20__init__(self%2C%20delay%3A%20float%20%3D%200.05)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20self.x%20%3D%20WIDTH%20%2F%202%0A%20%20%20%20%20%20%20%20%20%20%20%20self.y%20%3D%20HEIGHT%20%2F%202%0A%20%20%20%20%20%20%20%20%20%20%20%20self.angle%20%3D%20-90.0%20%20%20%20%20%20%23%20facing%20upward%0A%20%20%20%20%20%20%20%20%20%20%20%20self.pen%20%3D%20True%0A%20%20%20%20%20%20%20%20%20%20%20%20self.segments%3A%20list%20%3D%20%5B%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20self._ci%20%3D%200%0A%20%20%20%20%20%20%20%20%20%20%20%20self._delay%20%3D%20delay%20%20%20%20%20%23%20seconds%20between%20frames%0A%0A%20%20%20%20%20%20%20%20%23%20%E2%94%80%E2%94%80%20pen%20control%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%20%20%20%20%20%20%20%20def%20penup(self)%3A%20%20%20self.pen%20%3D%20False%0A%20%20%20%20%20%20%20%20def%20pendown(self)%3A%20self.pen%20%3D%20True%0A%20%20%20%20%20%20%20%20def%20goto(self%2C%20x%2C%20y)%3A%20self.x%2C%20self.y%20%3D%20x%2C%20y%0A%20%20%20%20%20%20%20%20def%20setheading(self%2C%20a)%3A%20self.angle%20%3D%20a%0A%20%20%20%20%20%20%20%20def%20next_color(self)%3A%20self._ci%20%2B%3D%201%0A%0A%20%20%20%20%20%20%20%20%40property%0A%20%20%20%20%20%20%20%20def%20color(self)%3A%20return%20self.PALETTE%5Bself._ci%20%25%20len(self.PALETTE)%5D%0A%0A%20%20%20%20%20%20%20%20%23%20%E2%94%80%E2%94%80%20private%3A%20push%20one%20SVG%20frame%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%20%20%20%20%20%20%20%20async%20def%20_frame(self)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20mo.output.replace(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mo.Html(draw_svg(self.segments%2C%20self.x%2C%20self.y%2C%20self.angle))%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20%20%20%20%20await%20asyncio.sleep(self._delay)%20%20%20%23%20%E2%86%90%20yield%20to%20event%20loop%20here%0A%0A%20%20%20%20%20%20%20%20%23%20%E2%94%80%E2%94%80%20movement%20coroutines%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%20%20%20%20%20%20%20%20async%20def%20forward(self%2C%20dist%3A%20float)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%20math.radians(self.angle)%0A%20%20%20%20%20%20%20%20%20%20%20%20nx%20%3D%20self.x%20%2B%20dist%20*%20math.cos(r)%0A%20%20%20%20%20%20%20%20%20%20%20%20ny%20%3D%20self.y%20%2B%20dist%20*%20math.sin(r)%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20self.pen%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20self.segments.append(((self.x%2C%20self.y)%2C%20(nx%2C%20ny)%2C%20self.color))%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20self.x%2C%20self.y%20%3D%20nx%2C%20ny%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20await%20self._frame()%0A%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20self.x%2C%20self.y%20%3D%20nx%2C%20ny%0A%0A%20%20%20%20%20%20%20%20async%20def%20backward(self%2C%20dist%3A%20float)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20await%20self.forward(-dist)%0A%0A%20%20%20%20%20%20%20%20def%20right(self%2C%20deg%3A%20float)%3A%20self.angle%20%2B%3D%20deg%0A%0A%20%20%20%20%20%20%20%20def%20left(self%2C%20%20deg%3A%20float)%3A%20self.angle%20-%3D%20deg%0A%0A%20%20%20%20return%20(AsyncTurtle%2C)%0A%0A%0A%40app.function%0Aasync%20def%20spiral(t)%3A%0A%20%20%20%20for%20i%20in%20range(70)%3A%0A%20%20%20%20%20%20%20%20if%20i%20%25%2010%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20t.next_color()%0A%20%20%20%20%20%20%20%20await%20t.forward(i%20*%202.8)%0A%20%20%20%20%20%20%20%20t.right(91)%0A%0A%0A%40app.function%0Aasync%20def%20star(t)%3A%0A%20%20%20%20for%20_%20in%20range(5)%3A%0A%20%20%20%20%20%20%20%20await%20t.forward(200)%0A%20%20%20%20%20%20%20%20t.right(144)%0A%20%20%20%20%20%20%20%20t.next_color()%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20async%20def%20branch(tt%2C%20length%2C%20depth)%3A%0A%20%20%20%20%20%20%20%20if%20depth%20%3D%3D%200%20or%20length%20%3C%203%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20await%20tt.forward(length)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%0A%20%20%20%20%20%20%20%20await%20tt.forward(length%20%2F%203)%0A%20%20%20%20%20%20%20%20tt.left(60)%0A%20%20%20%20%20%20%20%20await%20branch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%20%20%20%20%20%20%20%20tt.right(120)%0A%20%20%20%20%20%20%20%20await%20branch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%20%20%20%20%20%20%20%20tt.left(60)%0A%20%20%20%20%20%20%20%20await%20tt.forward(length%20%2F%203)%0A%0A%20%20%20%20async%20def%20snowflake(t)%3A%0A%20%20%20%20%20%20%20%20for%20_%20in%20range(3)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20await%20branch(t%2C%20210%2C%203)%0A%20%20%20%20%20%20%20%20%20%20%20%20t.right(120)%0A%20%20%20%20%20%20%20%20%20%20%20%20t.next_color()%0A%0A%20%20%20%20return%20(snowflake%2C)%0A%0A%0A%40app.function%0Aasync%20def%20square_spiral(t)%3A%0A%20%20%20%20for%20i%20in%20range(52)%3A%0A%20%20%20%20%20%20%20%20if%20i%20%25%204%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20t.next_color()%0A%20%20%20%20%20%20%20%20await%20t.forward(10%20%2B%20i%20*%203.8)%0A%20%20%20%20%20%20%20%20t.right(89)%0A%0A%0A%40app.cell%0Adef%20_(HEIGHT%2C%20WIDTH)%3A%0A%20%20%20%20async%20def%20koch(tt%2C%20length%2C%20depth)%3A%0A%20%20%20%20%20%20%20%20if%20depth%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20await%20tt.forward(length)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%0A%20%20%20%20%20%20%20%20await%20koch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%20%20%20%20%20%20%20%20tt.left(60)%0A%20%20%20%20%20%20%20%20await%20koch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%20%20%20%20%20%20%20%20tt.right(120)%0A%20%20%20%20%20%20%20%20await%20koch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%20%20%20%20%20%20%20%20tt.left(60)%0A%20%20%20%20%20%20%20%20await%20koch(tt%2C%20length%20%2F%203%2C%20depth%20-%201)%0A%0A%20%20%20%20async%20def%20koch_curve(t)%3A%0A%20%20%20%20%20%20%20%20t.goto(WIDTH%20*%200.1%2C%20HEIGHT%20*%200.6)%0A%20%20%20%20%20%20%20%20t.setheading(0)%0A%20%20%20%20%20%20%20%20await%20koch(t%2C%20WIDTH%20*%200.8%2C%203)%0A%0A%20%20%20%20return%20(koch_curve%2C)%0A%0A%0A%40app.cell%0Adef%20_(koch_curve%2C%20mo%2C%20snowflake)%3A%0A%20%20%20%20shapes%20%3D%20%7B%0A%20%20%20%20%20%20%20%20%22spiral%22%3A%20spiral%2C%0A%20%20%20%20%20%20%20%20%22star%22%3A%20star%2C%0A%20%20%20%20%20%20%20%20%22snowflake%22%3A%20snowflake%2C%0A%20%20%20%20%20%20%20%20%22square%20spiral%22%3A%20square_spiral%2C%0A%20%20%20%20%20%20%20%20%22koch%20curve%22%3A%20koch_curve%2C%0A%20%20%20%20%7D%0A%20%20%20%20pattern%20%3D%20mo.ui.dropdown(%0A%20%20%20%20%20%20%20%20options%3Dlist(shapes.keys())%2C%0A%20%20%20%20%20%20%20%20value%3Dlist(shapes.keys())%5B0%5D%2C%0A%20%20%20%20%20%20%20%20label%3D%22Pattern%22%2C%0A%20%20%20%20)%0A%20%20%20%20speed%20%3D%20mo.ui.slider(1%2C%2030%2C%20value%3D12%2C%20label%3D%22Speed%20(steps%2Fsec)%22)%0A%20%20%20%20draw_btn%20%3D%20mo.ui.run_button(label%3D%22%E2%96%B6%20Draw%22)%0A%20%20%20%20mo.hstack(%5Bpattern%2C%20speed%2C%20draw_btn%5D%2C%20gap%3D2)%0A%20%20%20%20return%20draw_btn%2C%20pattern%2C%20shapes%2C%20speed%0A%0A%0A%40app.cell%0Aasync%20def%20_(AsyncTurtle%2C%20draw_btn%2C%20draw_svg%2C%20mo%2C%20pattern%2C%20shapes%2C%20speed)%3A%0A%20%20%20%20%23%20%E2%94%80%E2%94%80%20cell%20is%20async%3A%20marimo%20runs%20it%20on%20its%20asyncio%20event%20loop%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%20%20%20%20draw_btn%20%20%23%20reactive%3A%20re-run%20this%20cell%20whenever%20the%20button%20is%20clicked%0A%0A%20%20%20%20%23%20Draw.%0A%20%20%20%20turtle%20%3D%20AsyncTurtle(delay%3D1.0%20%2F%20speed.value)%0A%20%20%20%20await%20shapes%5Bpattern.value%5D(turtle)%0A%0A%20%20%20%20%23%20Final%20frame%3A%20hide%20the%20turtle%20marker%0A%20%20%20%20mo.output.replace(mo.Html(draw_svg(turtle.segments)))%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "cwd": "",
+            "mode": "edit",
+            "version": "0.20.4",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

@@ -1,11 +1,24 @@
 .PHONY: docs
 all: commands
 
+MARIMO := uv run marimo
+
 ## commands: show available commands
 commands:
 	@grep -h -E '^##' ${MAKEFILE_LIST} \
 	| sed -e 's/## //g' \
 	| column -t -s ':'
+
+## site: build GitHub pages site
+site:
+	@mkdir -p docs
+	@cp pages/index.html docs/
+	@cp pages/neat.css docs/
+	${MARIMO} export html-wasm --force --mode edit --sandbox turtle/turtle.py -o docs/turtle.html
+
+## serve: serve website
+serve:
+	python -m http.server --directory docs
 
 ## check: check Python code issues
 check:
