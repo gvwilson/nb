@@ -53,6 +53,15 @@ def _(mo):
     ## Introduction
 
     This episode introduces the two primary types of data models that are used to digitally represent the Earth surface: raster and vector. After briefly introducing these data models, this episode focuses on the raster representation, describing some major features and types of raster data. This workshop will focus on how to work with both raster and vector data sets, therefore it is essential that we understand the basic structures of these types of data and the types of phenomena that they can represent.
+
+    ### Acknowledgments
+
+    These notebooks are taken from [Introduction to Geospatial Raster and Vector Data with Python](https://github.com/carpentries-incubator/geospatial-python/).
+
+    ### Setup
+
+    1. Download the data required for this lesson from [figshare](https://figshare.com/ndownloader/articles/25721754/versions/3) (678MB).
+    2. Unzip the downloaded file and save its content in a directory called `data` in the same directory as these notebooks..
     """)
     return
 

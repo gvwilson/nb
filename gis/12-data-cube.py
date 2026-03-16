@@ -309,9 +309,9 @@ def _(mo):
 
 @app.cell
 def _(ndvi, x, y):
-    ndvi_xy = ndvi.sel(x=x, y=y, method="nearest")
-    print(ndvi_xy)
-    return (ndvi_xy,)
+    ndvi_xy_1 = ndvi.sel(x=x, y=y, method="nearest")
+    print(ndvi_xy_1)
+    return (ndvi_xy_1,)
 
 
 @app.cell(hide_code=True)
@@ -324,13 +324,13 @@ def _(mo):
 
 
 @app.cell
-def _(ndvi_xy):
+def _(ndvi_xy_1):
     import time
     _t0 = time.time()
-    ndvi_xy = ndvi_xy.compute(scheduler="threads", num_workers=4)
+    ndvi_xy_2 = ndvi_xy_1.compute(scheduler="threads", num_workers=4)
     _t1 = time.time()
     print(f"Wall time: {_t1 - _t0:.1f} s")
-    return (ndvi_xy, time)
+    return (ndvi_xy_2, time)
 
 
 @app.cell(hide_code=True)
@@ -343,8 +343,8 @@ def _(mo):
 
 
 @app.cell
-def _(ndvi_xy):
-    ndvi_xy.dropna(dim="time").plot()
+def _(ndvi_xy_2):
+    ndvi_xy_2.dropna(dim="time").plot()
     return
 
 

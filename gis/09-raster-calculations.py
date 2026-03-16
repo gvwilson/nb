@@ -418,14 +418,14 @@ def _(mo):
 
 @app.cell
 def _(blue_clip, index_match, ndvi, ndwi, nir_clip, swir16_match):
-    burned = (
+    burned_full = (
         (ndvi <= 0.3) &
         (ndwi <= 0.1) &
         ((index_match + nir_clip / 10_000) <= 0.1) &
         ((blue_clip / 10_000) <= 0.1) &
         ((swir16_match / 10_000) >= 0.1)
     )
-    return (burned,)
+    return (burned_full,)
 
 
 @app.cell(hide_code=True)
@@ -438,8 +438,8 @@ def _(mo):
 
 
 @app.cell
-def _(burned):
-    burned = burned.squeeze()
+def _(burned_full):
+    burned = burned_full.squeeze()
     return (burned,)
 
 
@@ -485,7 +485,7 @@ def _(mo):
 
 @app.cell
 def _(burned):
-    burned.rio.to_raster('burned.tif', dtype='int8')
+    burned.fillna(0).astype('int8').rio.write_nodata(-1).rio.to_raster('burned.tif')
     return
 
 

@@ -2,10 +2,12 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #     "marimo>=0.9.0",
-#     "geopandas",
+#     "geopandas==1.1.3",
 #     "shapely",
 #     "pandas",
-#     "matplotlib",
+#     "matplotlib==3.10.8",
+#     "folium>=0.12",
+#     "mapclassify==2.10.0",
 # ]
 # ///
 

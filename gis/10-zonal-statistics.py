@@ -8,7 +8,7 @@
 #     "matplotlib",
 #     "geopandas",
 #     "xarray",
-#     "xrspatial",
+#     "xarray-spatial",
 # ]
 # ///
 
@@ -88,8 +88,8 @@ def _():
 
     # Load assets polygons
     import geopandas as gpd
-    assets = gpd.read_file('assets.gpkg')
-    return (assets, burned, gpd, rioxarray)
+    assets_raw = gpd.read_file('assets.gpkg')
+    return (assets_raw, burned, gpd, rioxarray)
 
 
 @app.cell(hide_code=True)
@@ -118,8 +118,8 @@ def _(mo):
 
 
 @app.cell
-def _(assets, burned):
-    assets = assets.to_crs(burned.rio.crs)
+def _(assets_raw, burned):
+    assets = assets_raw.to_crs(burned.rio.crs)
     return (assets,)
 
 

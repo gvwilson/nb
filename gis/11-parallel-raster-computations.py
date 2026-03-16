@@ -374,10 +374,10 @@ def _(mo):
 @app.cell
 def _(ndvi_dask, time):
     _t0 = time.time()
-    ndvi_dask = ndvi_dask.persist(scheduler="threads", num_workers=4)
+    ndvi_dask_2 = ndvi_dask.persist(scheduler="threads", num_workers=4)
     _t1 = time.time()
     print(f"Dask parallel wall time: {_t1 - _t0:.2f} s")
-    return (ndvi_dask,)
+    return (ndvi_dask_2,)
 
 
 @app.cell(hide_code=True)
@@ -398,9 +398,9 @@ def _(mo):
 
 
 @app.cell
-def _(ndvi_dask):
+def _(ndvi_dask_2):
     from threading import Lock
-    ndvi_dask.rio.to_raster('ndvi.tif', tiled=True, lock=Lock())
+    ndvi_dask_2.rio.to_raster('ndvi.tif', tiled=True, lock=Lock())
     return (Lock,)
 
 

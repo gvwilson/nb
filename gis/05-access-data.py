@@ -403,7 +403,7 @@ def _(item):
 
 @app.cell
 def _(item):
-    print(item.properties['proj:epsg'])
+    print(item.properties['proj:code'])
     return
 
 

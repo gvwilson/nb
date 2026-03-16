@@ -4,7 +4,7 @@
 #     "marimo>=0.9.0",
 #     "rioxarray",
 #     "rasterio",
-#     "geopandas",
+#     "geopandas==1.1.3",
 #     "numpy",
 #     "matplotlib",
 #     "pystac",

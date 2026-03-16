@@ -52,3 +52,14 @@ yarn-error.log*
 *~
 */.ipynb_checkpoints/*
 *~
+
+# Data files
+gis/assets.gpkg
+gis/burned.tif
+gis/data/
+gis/dem_rhodes_match.tif
+gis/ndvi.tif
+gis/red.tif
+gis/red_subset.tif
+gis/rhodes.gpkg
+gis/rhodes_sentinel-2.json
