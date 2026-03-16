@@ -7,7 +7,7 @@
 
 import marimo
 
-__generated_with = "0.9.0"
+__generated_with = "0.20.4"
 app = marimo.App(width="medium")
 
 
@@ -43,6 +43,7 @@ def _(mo):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -224,7 +225,7 @@ def _(mo):
     ### Vector
 
     | File Type | Extensions | Description |
-    | --------- | ---------- | ----------- |
+    | :-------- | :--------- | :---------- |
     | Esri Shapefile | .SHP .DBF .SHX | The most common geospatial file type. This has become the industry standard. The three required files are: SHP is the feature geometry. SHX is the shape index position. DBF is the attribute data. |
     | GeoPackage | .gpkg | As an alternative to Shapefile, this open file format is gaining terrain and it consists of one file containing all necessary attribute information. |
     | Geographic JavaScript Object Notation (GeoJSON) | .GEOJSON .JSON | Used for web-based mapping and uses JavaScript Object Notation to store the coordinates as text. |
@@ -235,7 +236,7 @@ def _(mo):
     ### Raster
 
     | File Type | Extensions | Description |
-    | --------- | ---------- | ----------- |
+    | :-------- | :--------- | :---------- |
     | ERDAS Imagine | .IMG | ERDAS Imagine IMG files is a proprietary file format developed by Hexagon Geospatial. IMG files are commonly used for raster data to store single and multiple bands of satellite data. Each raster layer as part of an IMG file contains information about its data values. For example, this includes projection, statistics, attributes, pyramids and whether or not it's a continuous or discrete type of raster. |
     | GeoTIFF | .TIF .TIFF .OVR | The GeoTIFF has become an industry image standard file for GIS and satellite remote sensing applications. GeoTIFFs may be accompanied by other files: TFW is the world file that is required to give your raster geolocation. XML optionally accompany GeoTIFFs and are your metadata. AUX auxiliary files store projections and other information. OVR pyramid files improves performance for raster display. |
     | Cloud Optimized GeoTIFF (COG) | .TIF .TIFF | Based on the GeoTIFF standard, COGs incorporate tiling and overviews to support HTTP range requests where users can query and load subsets of the image without having to transfer the entire file. |
