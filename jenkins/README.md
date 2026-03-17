@@ -1,0 +1,1 @@
+https://nuclearskillsplan.com/65-6-million-doctoral-focal-award-to-strengthen-uk-nuclear-skills-energy-security-and-sovereign-defence-capability/
