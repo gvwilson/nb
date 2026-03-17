@@ -1,3 +1,13 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "altair",
+#     "marimo",
+#     "pandas",
+#     "vega_datasets",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.20.4"
@@ -564,7 +574,7 @@ def _(mo):
 def _(airports, alt, flights, usa):
     # interactive selection for origin airport
     # select nearest airport to mouse cursor
-    origin = alt.selection_single(
+    origin = alt.selection_point(
         on='mouseover', nearest=True,
         fields=['origin'], empty='none'
     )
@@ -606,7 +616,7 @@ def _(airports, alt, flights, usa):
                                  fields=['state', 'latitude', 'longitude'])
         ).transform_filter(
             'datum.state !== "PR" && datum.state !== "VI"'
-        ).add_selection(
+        ).add_params(
             origin
         ).encode(
             latitude='latitude:Q',

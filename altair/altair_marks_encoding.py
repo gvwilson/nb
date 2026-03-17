@@ -1,3 +1,13 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "altair",
+#     "marimo",
+#     "pandas",
+#     "vega_datasets",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.20.4"
@@ -624,8 +634,8 @@ def _(mo):
 
 @app.cell
 def _(alt, data):
-    select_year = alt.selection_single(
-        name='select', fields=['year'], init={'year': 1955},
+    select_year = alt.selection_point(
+        name='select', fields=['year'], value=[{'year': 1955}],
         bind=alt.binding_range(min=1955, max=2005, step=5)
     )
 
@@ -637,7 +647,7 @@ def _(alt, data):
         alt.OpacityValue(0.5),
         alt.Tooltip('country:N'),
         alt.Order('pop:Q', sort='descending')
-    ).add_selection(select_year).transform_filter(select_year)
+    ).add_params(select_year).transform_filter(select_year)
     return
 
 

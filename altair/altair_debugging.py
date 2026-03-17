@@ -1,5 +1,11 @@
 # /// script
-# dependencies = ["altair", "vega-datasets"]
+# requires-python = ">=3.11"
+# dependencies = [
+#     "altair",
+#     "marimo",
+#     "pandas",
+#     "vega_datasets",
+# ]
 # ///
 
 import marimo
@@ -291,16 +297,19 @@ def _(alt, cars):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Or if you use a non-existent channel, you get a `ValueError`.
+    Or if you use a non-existent channel, you get a `TypeError`.
     """)
     return
 
 
 @app.cell
 def _(alt, cars):
-    alt.Chart(cars).mark_point().encode(
-        z='Horsepower'
-    )
+    try:
+        alt.Chart(cars).mark_point().encode(
+            z='Horsepower'
+        )
+    except TypeError as e:
+        print(f"TypeError: {e}")
     return
 
 
