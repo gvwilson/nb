@@ -13,6 +13,7 @@
 - `nederbragt`: converting some of Lex Nederbragt's bioinformatics notebooks
 - `parallel`: vibe-coded experiments connecting Marimo to Dagster, Luigi, and Metaflow
 - `pogil`: Process Oriented Guided Inquiry Learning material
+- `styling`: interactive CSS styling
 - `turtle`: animated turtle graphics in Marimo notebook
 - `veitch-michaelis`: Josh Veitch-Michaelis (U Florida)
 - `walters`: cheminformatics tutorials from Pat Walters
